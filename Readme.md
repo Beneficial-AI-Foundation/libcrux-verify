@@ -1,3 +1,5 @@
+**BAIF verification fork — preparation stage.** This repository hosts the planned Aeneas/Lean verification work using FVS and AO. The selected baseline is [baseline/libcrux-0.0.10](https://github.com/Beneficial-AI-Foundation/libcrux-verify/tree/baseline/libcrux-0.0.10). No additional BAIF verification results are claimed yet. Upstream documentation follows.
+
 # libcrux - a high-assurance cryptographic library in Rust
 
 libcrux is a cryptographic library written in Rust. It uses formally verified
