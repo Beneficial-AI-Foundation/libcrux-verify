@@ -1,0 +1,12 @@
+name = "LibcruxHmac"
+version = "0.1.0"
+defaultTargets = ["LibcruxHmac"]
+
+[[require]]
+name = "aeneas"
+git = "https://github.com/AeneasVerif/aeneas.git"
+subDir = "backends/lean"
+rev = "nightly-2026.11.09-5a392f4"
+
+[[lean_lib]]
+name = "LibcruxHmac"
