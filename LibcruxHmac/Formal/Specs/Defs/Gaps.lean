@@ -11,9 +11,10 @@ modelled, and are not accepted assumptions.
 
 So this file does **not** assume anything about them. Each definition below is
 a `Prop` that states the Rust behaviour of one gap, restricted to the
-instantiation the extraction uses. The statements that need a gap take this
-`Prop` as an explicit hypothesis. They stay conditional on it until the gap is
-modelled; then the hypothesis is discharged by the model's lemma.
+instantiation the extraction uses. Only the conditional statements
+`hmac_sha2_*_spec_of_gaps` and `hmac_spec_of_gaps` take these `Prop`s, as explicit
+hypotheses. The exact claims `hmac_sha2_*_spec` and `hmac_spec` take none; they
+can be proved once the gaps are modelled or accepted by the owner.
 
 The two Debug-formatting gaps (`gap-core-tryfromint-error-debug-fmt` and
 `a2-libcrux-traits-updateerror-debug-fmt`) need no hypothesis: they are only

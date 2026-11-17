@@ -11,8 +11,9 @@ is declared once, in `LibcruxHmac/Formal/Proofs/`. It is restated here with
 
 * `<HmacStream as HmacState>::new` (C3): `new_spec`; `new_sha{256,384,512}_spec`
   (`Proofs/HmacStreamNew.lean`);
-* `<HmacStream as HmacState>::update` (C3): `update_spec`, `update_err`;
-  `update_sha{256,384,512}_{spec,err}` (`Proofs/HmacStreamUpdate.lean`);
+* `<HmacStream as HmacState>::update` (C3): `update_spec`, `update_full`,
+  `update_err`; `update_sha{256,384,512}_{spec,full,err}`
+  (`Proofs/HmacStreamUpdate.lean`);
 * `<HmacStream as HmacState>::finalize` (C3): `finalize_spec`;
   `finalize_sha{256,384,512}_spec` (`Proofs/HmacStreamFinalize.lean`).
 
@@ -31,8 +32,23 @@ Not stated (agreed exclusion, boundary A3): `incremental::hmac_slices`, which
 Aeneas extracts as an axiom (its `&[&[u8]]` argument is a nested borrow), and
 the wrappers `hmac_sha2_{256,384,512}_slices`, which call it.
 
-The `example` at the end checks that the three alias statements compose into
-C3: `new`, two `update`s and `finalize` give the C1 tag of the concatenated data.
+Total-length limit. The digest accepts at most `maxLen` bytes in total
+(`2 ^ 61 - 1` for SHA-256, `2 ^ 64 - 1` for SHA-384/512, the `BLOCK`-byte inner
+pad included). The three `update` statements cover every input: within the limit
+the data is appended (`update_spec`); an input that would pass the limit is
+dropped silently, and `update` still returns `Ok(())` with the state unchanged
+(`update_full`, from the A2 law `DigestContract.update_full`); an input over
+`u32::MAX` bytes is rejected with `Err` (`update_err`). `finalize` is stated
+against the accepted transcript, the bytes actually absorbed. So C3 holds for
+concatenations within the limit: the tag is `Spec.hmacSha* key (d₁ ‖ … ‖ dₙ)`,
+the mathematical HMAC, which is the tag of the C1 function `hmac_sha2_*` when the
+key and the concatenation are below `2 ^ 32` bytes. Past the limit, the tag is
+the HMAC of the accepted transcript.
+
+The two `example`s at the end check that the alias statements compose: `new`,
+two `update`s and `finalize` give the HMAC of the concatenated data; and an
+`update` past the limit is dropped, so `finalize` gives the HMAC of the accepted
+transcript.
 
 Each `#print axioms` below is followed by its guard list. The guard is
 **pending**: until the proof PR, the output also contains `sorryAx`. After the
@@ -128,6 +144,18 @@ recall update_err {D S : Type} {OUTLEN BLOCK : Usize}
 #print axioms update_err
 /- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`. -/
 
+recall update_full {D S : Type} {OUTLEN BLOCK : Usize}
+    (inst : DigestIncremental D S OUTLEN) (init : InitializeDigestState S)
+    {H : List U8 → List U8} {maxLen : Nat} (C : DigestContract inst init H maxLen)
+    (st : incremental.HmacStream D S OUTLEN BLOCK) (key msg : List U8) (data : Slice U8)
+    (hrep : StreamRep C st key msg) (hdata : data.length ≤ U32.max)
+    (hbound : BLOCK.val + msg.length ≤ maxLen)
+    (hover : maxLen < BLOCK.val + msg.length + data.length) :
+    update inst init st data = ok (.Ok (), st)
+
+#print axioms update_full
+/- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`. -/
+
 recall update_sha256_spec (st : HmacSha256) (key msg : List U8) (data : Slice U8)
     (hrep : StreamRep Trusted.sha256Contract st key msg) (hdata : data.length ≤ U32.max)
     (hlen : 64 + msg.length + data.length ≤ sha256StreamMax) :
@@ -144,6 +172,15 @@ recall update_sha256_err (st : HmacSha256) (key msg : List U8) (data : Slice U8)
     update sha256Digest sha256Init st data = ok (.Err .InvalidInputLength, st)
 
 #print axioms update_sha256_err
+/- Axiom guard (pending): as for `update_sha256_spec`. -/
+
+recall update_sha256_full (st : HmacSha256) (key msg : List U8) (data : Slice U8)
+    (hrep : StreamRep Trusted.sha256Contract st key msg) (hdata : data.length ≤ U32.max)
+    (hbound : 64 + msg.length ≤ sha256StreamMax)
+    (hover : sha256StreamMax < 64 + msg.length + data.length) :
+    update sha256Digest sha256Init st data = ok (.Ok (), st)
+
+#print axioms update_sha256_full
 /- Axiom guard (pending): as for `update_sha256_spec`. -/
 
 recall update_sha384_spec (st : HmacSha384) (key msg : List U8) (data : Slice U8)
@@ -164,6 +201,15 @@ recall update_sha384_err (st : HmacSha384) (key msg : List U8) (data : Slice U8)
 #print axioms update_sha384_err
 /- Axiom guard (pending): as for `update_sha384_spec`. -/
 
+recall update_sha384_full (st : HmacSha384) (key msg : List U8) (data : Slice U8)
+    (hrep : StreamRep Trusted.sha384Contract st key msg) (hdata : data.length ≤ U32.max)
+    (hbound : 128 + msg.length ≤ sha512StreamMax)
+    (hover : sha512StreamMax < 128 + msg.length + data.length) :
+    update sha384Digest sha384Init st data = ok (.Ok (), st)
+
+#print axioms update_sha384_full
+/- Axiom guard (pending): as for `update_sha384_spec`. -/
+
 recall update_sha512_spec (st : HmacSha512) (key msg : List U8) (data : Slice U8)
     (hrep : StreamRep Trusted.sha512Contract st key msg) (hdata : data.length ≤ U32.max)
     (hlen : 128 + msg.length + data.length ≤ sha512StreamMax) :
@@ -180,6 +226,15 @@ recall update_sha512_err (st : HmacSha512) (key msg : List U8) (data : Slice U8)
     update sha512Digest sha512Init st data = ok (.Err .InvalidInputLength, st)
 
 #print axioms update_sha512_err
+/- Axiom guard (pending): as for `update_sha512_spec`. -/
+
+recall update_sha512_full (st : HmacSha512) (key msg : List U8) (data : Slice U8)
+    (hrep : StreamRep Trusted.sha512Contract st key msg) (hdata : data.length ≤ U32.max)
+    (hbound : 128 + msg.length ≤ sha512StreamMax)
+    (hover : sha512StreamMax < 128 + msg.length + data.length) :
+    update sha512Digest sha512Init st data = ok (.Ok (), st)
+
+#print axioms update_sha512_full
 /- Axiom guard (pending): as for `update_sha512_spec`. -/
 
 /-! ## `<HmacStream as HmacState>::finalize` (C3) -/
@@ -217,10 +272,11 @@ recall finalize_sha512_spec (st : HmacSha512) (key msg : List U8) (dst : Array U
 #print axioms finalize_sha512_spec
 /- Axiom guard (pending): as for `new_sha512_spec`. -/
 
-/-! ## The three statements compose into C3 -/
+/-! ## The statements compose into C3 -/
 
-/-- At `HmacSha256`: `new`, then `update` with `d₁` and `d₂`, then `finalize`
-writes HMAC-SHA-256 of `d₁ ‖ d₂`, the C1 tag of the concatenation. -/
+/-- At `HmacSha256`, within the total limit: `new`, then `update` with `d₁` and
+`d₂`, then `finalize` writes HMAC-SHA-256 of `d₁ ‖ d₂`. With a key and data below
+`2 ^ 32` bytes this is the tag of the C1 function `hmac_sha2_256`. -/
 example (key d₁ d₂ : Slice U8) (dst : Array U8 32#usize)
     (hk : key.length ≤ U32.max) (h₁ : d₁.length ≤ U32.max) (h₂ : d₂.length ≤ U32.max)
     (hlen : 64 + d₁.length + d₂.length ≤ sha256StreamMax) :
@@ -240,5 +296,19 @@ example (key d₁ d₂ : Slice U8) (dst : Array U8 32#usize)
   step as ⟨r₂, st₂, _e₂, h₂'⟩
   step as ⟨tag, htag⟩
   simpa using htag
+
+/-- At `HmacSha256`, past the total limit: from a state keyed with `key` after the
+accepted data `msg`, an `update` whose data would pass the limit is dropped, and
+`finalize` writes HMAC-SHA-256 of the accepted transcript `msg`. -/
+example (st : HmacSha256) (key msg : List U8) (d : Slice U8) (dst : Array U8 32#usize)
+    (hrep : StreamRep Trusted.sha256Contract st key msg) (hd : d.length ≤ U32.max)
+    (hbound : 64 + msg.length ≤ sha256StreamMax)
+    (hover : sha256StreamMax < 64 + msg.length + d.length) :
+    (do
+      let (_, st) ← update sha256Digest sha256Init st d
+      finalize sha256Digest sha256Init st dst) ⦃ tag =>
+        tag.val = Spec.hmacSha256 key msg ⦄ := by
+  simp only [update_sha256_full st key msg d hrep hd hbound hover, bind_ok]
+  exact finalize_sha256_spec st key msg dst hrep
 
 end libcrux_hmac.incremental.HmacStream.Insts.Libcrux_hmacHmacState

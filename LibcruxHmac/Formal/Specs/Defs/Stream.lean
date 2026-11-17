@@ -12,7 +12,8 @@ state type of libcrux-sha2 is opaque in the extraction (boundary A2): it is an
   relation `Represents s m`, "the state `s` has absorbed exactly the bytes `m`",
   and gives one law for each operation the HMAC code calls. The laws restate
   the Rust source of libcrux-sha2 0.0.8 (`impl_digest_trait.rs` lines 43, 54–61,
-  71–72; `hacl.rs` lines 667 and 974), restricted to what HMAC uses.
+  71–72; `impl_hacl.rs` lines 110–112; `hacl.rs` lines 665–669 and 972–976),
+  restricted to what HMAC uses.
 * `StreamRep` is the invariant of an `HmacStream` keyed with `key` that has
   absorbed `msg`.
 * `HmacSha256`, `HmacSha384`, `HmacSha512` and their instance arguments are the
@@ -39,6 +40,12 @@ whose concatenated inputs are `m`. The laws are:
 * `new`: `init.new` returns a state that has absorbed nothing;
 * `update_ok`: an update with at most `u32::MAX` bytes, within the total limit,
   returns `Ok(())` and appends its input;
+* `update_full`: from a state within the total limit, an update with at most
+  `u32::MAX` bytes that would pass the limit returns `Ok(())` and leaves the state
+  unchanged. HACL checks the limit first and returns `MaximumLengthExceeded`
+  without changing the state (`hacl.rs` lines 665–669, 972–976);
+  `impl_hacl.rs` lines 110–112 drop that error code; `impl_digest_trait.rs`
+  lines 54–60 then return `Ok(())`. The input is silently dropped;
 * `update_err`: an update with more than `u32::MAX` bytes returns
   `Err(InvalidPayloadLength)` and leaves the state unchanged
   (`impl_digest_trait.rs` lines 56–58);
@@ -53,6 +60,9 @@ structure DigestContract {D S : Type} {N : Usize}
     Represents s m → c.length ≤ U32.max → m.length + c.length ≤ maxLen →
     inst.DigestIncrementalBaseInst.update s c ⦃ r s' =>
       r = .Ok () ∧ Represents s' (m ++ c.val) ⦄
+  update_full : ∀ (s : S) (m : List Byte) (c : Slice Byte),
+    Represents s m → m.length ≤ maxLen → c.length ≤ U32.max → maxLen < m.length + c.length →
+    inst.DigestIncrementalBaseInst.update s c = ok (.Ok (), s)
   update_err : ∀ (s : S) (m : List Byte) (c : Slice Byte),
     Represents s m → U32.max < c.length →
     inst.DigestIncrementalBaseInst.update s c = ok (.Err .InvalidPayloadLength, s)
@@ -73,8 +83,9 @@ def StreamRep {D S : Type} {OUTLEN BLOCK : Usize}
 /-! ## The total-length limits of the libcrux-sha2 streaming states -/
 
 /-- The SHA-256 streaming state accepts at most `2 ^ 61 - 1` bytes in total
-(`hacl.rs` line 667: `2305843009213693951u64`). Above it, HACL returns
-`MaximumLengthExceeded`, and `impl_hacl.rs` line 112 discards that error code. -/
+(`hacl.rs` line 667: `2305843009213693951u64`). An update that would pass it
+makes HACL return `MaximumLengthExceeded` with the state unchanged, and
+`impl_hacl.rs` line 112 discards that error code (law `update_full`). -/
 def sha256StreamMax : Nat := 2 ^ 61 - 1
 
 /-- The SHA-384 and SHA-512 streaming states accept at most `2 ^ 64 - 1` bytes in

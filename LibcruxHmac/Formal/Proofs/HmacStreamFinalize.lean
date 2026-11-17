@@ -23,10 +23,16 @@ natural language specs:
     For the aliases they hold by computation.
     * If `st` is keyed with `key` after the data `msg` (`StreamRep C st key msg`),
       `finalize` does not panic and writes `Spec.hmac H BLOCK key msg` into
-      `dst`, whatever `dst` held (FIPS 198-1 §4 steps 5–9).
-    With `new` and `update` this gives C3: `new(key)`, then `update` with `d₁`,
-    …, `dₙ`, then `finalize` writes `Spec.hmacSha* key (d₁ ‖ … ‖ dₙ)`, the C1
-    tag of the concatenation.
+      `dst`, whatever `dst` held (FIPS 198-1 §4 steps 5–9). `msg` is the accepted
+      transcript: the bytes that the `update` calls actually absorbed.
+    With `new` and `update` this gives C3: `new(key)`, then `update` with `d₁`, …,
+    `dₙ` (each at most `u32::MAX` bytes), then `finalize` writes
+    `Spec.hmacSha* key (d₁ ‖ … ‖ dₙ)`, as long as `BLOCK + |d₁ ‖ … ‖ dₙ|` stays
+    within the digest's total limit. `Spec.hmacSha*` is the mathematical HMAC; it
+    is the tag of the C1 function `hmac_sha2_*` when the key and the concatenation
+    are below `2 ^ 32` bytes. Past the limit, `update` drops input silently
+    (`update_full`), and the tag is the HMAC of the accepted transcript, not of
+    all the data passed.
     Conditional on: A1; for the aliases, A2 through the axioms
     `Trusted.sha256Contract`, `Trusted.sha384Contract`, `Trusted.sha512Contract`.
 -/

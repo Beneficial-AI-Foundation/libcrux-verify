@@ -9,7 +9,21 @@ in `LibcruxHmac/Formal/Proofs/`. It is restated here with `recall`, which fails 
 build if the declared statement differs.
 
 * `libcrux_hmac::tag_size`: `tag_size_spec` (`Proofs/TagSize.lean`);
-* `libcrux_hmac::hmac` (C4): `hmac_spec`, `hmac_panic` (`Proofs/Hmac.lean`).
+* `libcrux_hmac::hmac` (C4): `hmac_spec`, `hmac_spec_of_gaps`, `hmac_panic`
+  (`Proofs/Hmac.lean`).
+
+Two forms of the `hmac` success statement:
+* `hmac_spec` is the exact C4 claim, conditional on C1, hence on A1 and A2, only.
+  It cannot be proved from the current extraction: `hmac` reaches four operations
+  that are bare axioms in the generated file (`externals.json` records
+  `gap-alloc-vec-truncate`, `gap-core-u32-wrapping-div`, `gap-core-u32-wrapping-rem`,
+  `gap-alloc-vec-into-boxed-slice`, all `open`). A proof needs models of them (a
+  re-extraction into a generated template plus a hand-written external layer) or
+  the owner accepting them as named assumptions.
+* `hmac_spec_of_gaps` has the same conclusion, with the behaviour of these
+  operations as the explicit hypotheses `hdiv`, `hrem`, `hbox`, `htrunc`
+  (`Defs/Gaps.lean`). It is provable from A1, A2 and these hypotheses. It is not
+  the agreed claim.
 
 Definitions, not separate statements: `Algorithm`, `Error`, the trait `HmacState`.
 
@@ -17,7 +31,8 @@ Not stated:
 * the derived `Clone`, `Copy`, `Debug` and `PartialEq` impls of `Algorithm` and
   `Error`;
 * the private helper `wrap_bufalloc`: translation patch `sp-08` inlines it, and
-  `hmac_spec` covers its three instances (hmac.rs lines 83–85).
+  `hmac_spec` and `hmac_spec_of_gaps` cover its three instances (hmac.rs
+  lines 83–85).
 
 Each `#print axioms` below is followed by its guard list. The guard is
 **pending**: until the proof PR, the output also contains `sorryAx`. After the
@@ -39,7 +54,32 @@ recall tag_size_spec (alg : Algorithm) :
 
 /-! ## `libcrux_hmac::hmac` (C4) -/
 
-recall hmac_spec
+recall hmac_spec (alg : Algorithm) (key data : Slice U8) (tag_length : Option Usize)
+    (hkey : key.length ≤ U32.max) (hdata : data.length ≤ U32.max) :
+    hmac alg key data tag_length ⦃ v =>
+      v.val = (Spec.hmacOf alg key.val data.val).take
+        ((tag_length.map (·.val)).getD (Spec.tagLength alg)) ⦄
+
+#print axioms hmac_spec
+/- Axiom guard (pending; exact claim, blocked on the open gaps):
+   * Lean: `propext`, `Classical.choice`, `Quot.sound`.
+   * Extraction axioms reached through `hmac` (boundary A2, types only):
+     `libcrux_sha2.hacl.{h256, h384, h512, hash_256, hash_384, hash_512,
+     sha{256,384,512}_{init, update_nblocks, update_last, finish}}` and
+     `libcrux_hacl_rs.{fstar.uint128.add, fstar.uint128.uint64_to_uint128,
+     lowstar.ignore.ignore}`.
+   * Trusted axioms the proof rests on (A2, `Trusted/Sha2Hacl.lean`), through C1:
+     as for `hmac_spec_of_gaps` below.
+   * Gap operations: today `alloc.vec.Vec.truncate`, `alloc.vec.Vec.into_boxed_slice`,
+     `core.num.U32.wrapping_div` and `core.num.U32.wrapping_rem` are bare extraction
+     axioms reached through `hmac`. A proof needs them modelled (they then leave
+     this list, replaced by the model's own dependencies) or accepted by the owner
+     as named assumptions (they then stay, recorded as accepted).
+   * `core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt` (extraction axiom,
+     never called).
+   * Translation patches (A1, ratified): `sp-04`, `sp-05`, `sp-06`, `sp-08`. -/
+
+recall hmac_spec_of_gaps
     (hdiv : Spec.Gap.U32WrappingDiv) (hrem : Spec.Gap.U32WrappingRem)
     (hbox : Spec.Gap.VecIntoBoxedSlice) (htrunc : Spec.Gap.VecTruncate)
     (alg : Algorithm) (key data : Slice U8) (tag_length : Option Usize)
@@ -48,8 +88,8 @@ recall hmac_spec
       v.val = (Spec.hmacOf alg key.val data.val).take
         ((tag_length.map (·.val)).getD (Spec.tagLength alg)) ⦄
 
-#print axioms hmac_spec
-/- Axiom guard (pending):
+#print axioms hmac_spec_of_gaps
+/- Axiom guard (pending; conditional form):
    * Lean: `propext`, `Classical.choice`, `Quot.sound`.
    * Extraction axioms reached through `hmac` (boundary A2, types only):
      `libcrux_sha2.hacl.{h256, h384, h512, hash_256, hash_384, hash_512,
