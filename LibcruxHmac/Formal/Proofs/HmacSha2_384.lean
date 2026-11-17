@@ -74,6 +74,14 @@ theorem hmac_sha2_384_spec_of_gaps
 theorem hmac_sha2_384_panic (dst : Array U8 48#usize) (key data : Slice U8)
     (h : U32.max < key.length ∨ U32.max < data.length) :
     hmac_sha2_384 dst key data = fail .panic := by
-  sorry
+  simp only [Slice.length] at h
+  by_cases hk : key.val.length ≤ U32.max
+  · have hd : ¬ data.val.length ≤ U32.max := by omega
+    simp [hmac_sha2_384, core.convert.num.ptr_try_from_impls.TryFromU32Usize.try_from,
+      core.num.tryFromUScalar, core.result.Result.unwrap, Slice.len, lift, hk, hd]
+    rfl
+  · simp [hmac_sha2_384, core.convert.num.ptr_try_from_impls.TryFromU32Usize.try_from,
+      core.num.tryFromUScalar, core.result.Result.unwrap, Slice.len, lift, hk]
+    rfl
 
 end libcrux_hmac.impl_hacl

@@ -1,6 +1,7 @@
 import LibcruxHmac.Formal.Proofs.HmacSha2_256
 import LibcruxHmac.Formal.Proofs.HmacSha2_384
 import LibcruxHmac.Formal.Proofs.HmacSha2_512
+import LibcruxHmac.Formal.Proofs.Lemmas.HmacTail
 
 /-!
 # `libcrux_hmac::hmac` (crates/algorithms/hmac/src/hmac.rs lines 72–89)
@@ -76,12 +77,24 @@ theorem hmac_spec_of_gaps
     hmac alg key data tag_length ⦃ v =>
       v.val = (Spec.hmacOf alg key.val data.val).take
         ((tag_length.map (·.val)).getD (Spec.tagLength alg)) ⦄ := by
-  sorry
+  unfold hmac
+  cases alg <;> cases tag_length <;> simp only [tag_size, bind_ok] <;>
+    first
+    | refine spec_mono (hmac_tail htrunc _ _ _
+        (impl_hacl.hmac_sha2_256_spec_of_gaps hdiv hrem hbox _ key data hkey hdata)) ?_
+    | refine spec_mono (hmac_tail htrunc _ _ _
+        (impl_hacl.hmac_sha2_384_spec_of_gaps hdiv hrem hbox _ key data hkey hdata)) ?_
+    | refine spec_mono (hmac_tail htrunc _ _ _
+        (impl_hacl.hmac_sha2_512_spec_of_gaps hdiv hrem hbox _ key data hkey hdata)) ?_
+  all_goals (intro v hv; simp [hv, Spec.hmacOf, Spec.tagLength])
 
 /-- C4, failure: with `2 ^ 32` or more bytes of key or data, `hmac` panics. -/
 theorem hmac_panic (alg : Algorithm) (key data : Slice U8) (tag_length : Option Usize)
     (h : U32.max < key.length ∨ U32.max < data.length) :
     hmac alg key data tag_length = fail .panic := by
-  sorry
+  unfold hmac
+  cases alg <;> cases tag_length <;>
+    simp [tag_size, impl_hacl.hmac_sha2_256_panic _ _ _ h, impl_hacl.hmac_sha2_384_panic _ _ _ h,
+      impl_hacl.hmac_sha2_512_panic _ _ _ h]
 
 end libcrux_hmac
