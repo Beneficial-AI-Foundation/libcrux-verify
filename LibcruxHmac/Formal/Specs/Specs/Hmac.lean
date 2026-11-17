@@ -48,7 +48,8 @@ namespace libcrux_hmac
 recall tag_size_spec (alg : Algorithm) :
     tag_size alg ⦃ n => n.val = Spec.tagLength alg ⦄
 
-#print axioms tag_size_spec
+/-- info: 'libcrux_hmac.tag_size_spec' depends on axioms: [propext, Classical.choice, Quot.sound] -/
+#guard_msgs in #print axioms tag_size_spec
 /- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`.
    No Trusted axiom, no extraction axiom. -/
 
