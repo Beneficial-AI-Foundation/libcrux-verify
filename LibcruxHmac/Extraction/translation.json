@@ -1,0 +1,2155 @@
+{
+  "aeneas_version": "nightly-2026.11.09-5a392f4",
+  "charon_version": "0.1.315",
+  "crate": "libcrux_hmac",
+  "functions": [
+    {
+      "def_id": 82,
+      "lean_name": "libcrux_hmac.core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "core::num::error::{impl core::fmt::Debug for core::num::error::TryFromIntError}::fmt",
+      "is_local": false,
+      "source": {
+        "file": "/rustc/library/core/src/num/error.rs",
+        "begin_line": 8,
+        "end_line": 8
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 60,
+      "lean_name": "libcrux_hmac.core.num.U32.wrapping_div",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "core::num::{u32}::wrapping_div",
+      "is_local": false,
+      "source": {
+        "file": "/rustc/library/core/src/num/mod.rs",
+        "begin_line": 1292,
+        "end_line": 1316
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 62,
+      "lean_name": "libcrux_hmac.core.num.U32.wrapping_rem",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "core::num::{u32}::wrapping_rem",
+      "is_local": false,
+      "source": {
+        "file": "/rustc/library/core/src/num/mod.rs",
+        "begin_line": 1292,
+        "end_line": 1316
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 53,
+      "lean_name": "libcrux_hmac.alloc.vec.Vec.into_boxed_slice",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "alloc::vec::{alloc::vec::Vec<T>}::into_boxed_slice",
+      "is_local": false,
+      "source": {
+        "file": "/rustc/library/alloc/src/vec/mod.rs",
+        "begin_line": 1731,
+        "end_line": 1731
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 35,
+      "lean_name": "libcrux_hmac.alloc.vec.Vec.truncate",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "alloc::vec::{alloc::vec::Vec<T>}::truncate",
+      "is_local": false,
+      "source": {
+        "file": "/rustc/library/alloc/src/vec/mod.rs",
+        "begin_line": 1816,
+        "end_line": 1816
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 71,
+      "lean_name": "libcrux_hmac.libcrux_hacl_rs.fstar.uint128.add",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hacl_rs::fstar::uint128::add",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-hacl-rs-0.0.5/src/fstar/uint128.rs",
+        "begin_line": 5,
+        "end_line": 5
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 70,
+      "lean_name": "libcrux_hmac.libcrux_hacl_rs.fstar.uint128.uint64_to_uint128",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hacl_rs::fstar::uint128::uint64_to_uint128",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-hacl-rs-0.0.5/src/fstar/uint128.rs",
+        "begin_line": 68,
+        "end_line": 68
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 51,
+      "lean_name": "libcrux_hmac.libcrux_hacl_rs.lowstar.ignore.ignore",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hacl_rs::lowstar::ignore::ignore",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-hacl-rs-0.0.5/src/lowstar/ignore.rs",
+        "begin_line": 1,
+        "end_line": 1
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 67,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.sha256_init",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::sha256_init",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 207,
+        "end_line": 207
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 68,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.sha256_update_nblocks",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::sha256_update_nblocks",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 319,
+        "end_line": 319
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 61,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.sha256_update_last",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::sha256_update_last",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 328,
+        "end_line": 328
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 63,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.sha256_finish",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::sha256_finish",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 358,
+        "end_line": 358
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 79,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.sha512_init",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::sha512_init",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 407,
+        "end_line": 407
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 80,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.sha512_update_nblocks",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::sha512_update_nblocks",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 518,
+        "end_line": 518
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 77,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.sha512_update_last",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::sha512_update_last",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 527,
+        "end_line": 527
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 78,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.sha512_finish",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::sha512_finish",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 557,
+        "end_line": 557
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 74,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.sha384_init",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::sha384_init",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 572,
+        "end_line": 572
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 75,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.sha384_update_nblocks",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::sha384_update_nblocks",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 580,
+        "end_line": 580
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 72,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.sha384_update_last",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::sha384_update_last",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 584,
+        "end_line": 584
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 73,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.sha384_finish",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::sha384_finish",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 588,
+        "end_line": 588
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 55,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.hash_256",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::hash_256",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 830,
+        "end_line": 830
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 76,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.hash_512",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::hash_512",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 1140,
+        "end_line": 1140
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 69,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.hash_384",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::hash_384",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 1223,
+        "end_line": 1223
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 86,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha256Hash.Insts.Libcrux_traitsDigestArrayrefDigestIncrementalSha25632.finish",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::arrayref::DigestIncremental<libcrux_sha2::impl_hacl::Sha256, 32usize> for libcrux_sha2::impl_digest_trait::Sha256Hash}::finish",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 88,
+        "end_line": 88
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 260,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha256Hash.Insts.Libcrux_traitsDigestDigestIncrementalBaseSha256.update",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::DigestIncrementalBase<libcrux_sha2::impl_hacl::Sha256> for libcrux_sha2::impl_digest_trait::Sha256Hash}::update",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 88,
+        "end_line": 88
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 259,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha256Hash.Insts.Libcrux_traitsDigestDigestIncrementalBaseSha256.reset",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::DigestIncrementalBase<libcrux_sha2::impl_hacl::Sha256> for libcrux_sha2::impl_digest_trait::Sha256Hash}::reset",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 88,
+        "end_line": 88
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 87,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_hacl.Sha256.Insts.Libcrux_traitsDigestInitializeDigestState.new",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::InitializeDigestState for libcrux_sha2::impl_hacl::Sha256}::new",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 88,
+        "end_line": 88
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 88,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha384Hash.Insts.Libcrux_traitsDigestArrayrefDigestIncrementalSha38448.finish",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::arrayref::DigestIncremental<libcrux_sha2::impl_hacl::Sha384, 48usize> for libcrux_sha2::impl_digest_trait::Sha384Hash}::finish",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 90,
+        "end_line": 90
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 262,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha384Hash.Insts.Libcrux_traitsDigestDigestIncrementalBaseSha384.update",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::DigestIncrementalBase<libcrux_sha2::impl_hacl::Sha384> for libcrux_sha2::impl_digest_trait::Sha384Hash}::update",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 90,
+        "end_line": 90
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 261,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha384Hash.Insts.Libcrux_traitsDigestDigestIncrementalBaseSha384.reset",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::DigestIncrementalBase<libcrux_sha2::impl_hacl::Sha384> for libcrux_sha2::impl_digest_trait::Sha384Hash}::reset",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 90,
+        "end_line": 90
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 89,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_hacl.Sha384.Insts.Libcrux_traitsDigestInitializeDigestState.new",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::InitializeDigestState for libcrux_sha2::impl_hacl::Sha384}::new",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 90,
+        "end_line": 90
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 90,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha512Hash.Insts.Libcrux_traitsDigestArrayrefDigestIncrementalSha51264.finish",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::arrayref::DigestIncremental<libcrux_sha2::impl_hacl::Sha512, 64usize> for libcrux_sha2::impl_digest_trait::Sha512Hash}::finish",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 91,
+        "end_line": 91
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 264,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha512Hash.Insts.Libcrux_traitsDigestDigestIncrementalBaseSha512.update",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::DigestIncrementalBase<libcrux_sha2::impl_hacl::Sha512> for libcrux_sha2::impl_digest_trait::Sha512Hash}::update",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 91,
+        "end_line": 91
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 263,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha512Hash.Insts.Libcrux_traitsDigestDigestIncrementalBaseSha512.reset",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::DigestIncrementalBase<libcrux_sha2::impl_hacl::Sha512> for libcrux_sha2::impl_digest_trait::Sha512Hash}::reset",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 91,
+        "end_line": 91
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 91,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_hacl.Sha512.Insts.Libcrux_traitsDigestInitializeDigestState.new",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::InitializeDigestState for libcrux_sha2::impl_hacl::Sha512}::new",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 91,
+        "end_line": 91
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 247,
+      "lean_name": "libcrux_hmac.libcrux_traits.digest.UpdateError.Insts.CoreFmtDebug.fmt",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_traits::digest::{impl core::fmt::Debug for libcrux_traits::digest::UpdateError}::fmt",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-traits-0.0.8/src/digest.rs",
+        "begin_line": 11,
+        "end_line": 11
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 49,
+      "lean_name": "libcrux_hmac.hacl.hmac.__uint32_t_uint32_t.Insts.CoreCmpPartialEq__uint32_t_uint32_t.eq",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::{impl core::cmp::PartialEq<libcrux_hmac::hacl::hmac::__uint32_t_uint32_t> for libcrux_hmac::hacl::hmac::__uint32_t_uint32_t}::eq",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 13,
+        "end_line": 13
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 50,
+      "lean_name": "libcrux_hmac.hacl.hmac.__uint32_t_uint32_t.Insts.CoreCloneClone.clone",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::{impl core::clone::Clone for libcrux_hmac::hacl::hmac::__uint32_t_uint32_t}::clone",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 13,
+        "end_line": 13
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 36,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_256_loop0.body",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_256",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 39,
+        "end_line": 43
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false,
+      "loop": { "id": 0, "pos": [ 0 ], "is_body": true },
+      "parent_lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_256"
+    },
+    {
+      "def_id": 36,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_256_loop0",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_256",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 39,
+        "end_line": 43
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false,
+      "loop": { "id": 0, "pos": [ 0 ], "is_body": false },
+      "parent_lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_256"
+    },
+    {
+      "def_id": 36,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_256_loop1.body",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_256",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 45,
+        "end_line": 49
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false,
+      "loop": { "id": 1, "pos": [ 1 ], "is_body": true },
+      "parent_lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_256"
+    },
+    {
+      "def_id": 36,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_256_loop1",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_256",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 45,
+        "end_line": 49
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false,
+      "loop": { "id": 1, "pos": [ 1 ], "is_body": false },
+      "parent_lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_256"
+    },
+    {
+      "def_id": 36,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_256",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_256",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 26,
+        "end_line": 126
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 37,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_384_loop0.body",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_384",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 148,
+        "end_line": 152
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false,
+      "loop": { "id": 0, "pos": [ 0 ], "is_body": true },
+      "parent_lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_384"
+    },
+    {
+      "def_id": 37,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_384_loop0",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_384",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 148,
+        "end_line": 152
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false,
+      "loop": { "id": 0, "pos": [ 0 ], "is_body": false },
+      "parent_lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_384"
+    },
+    {
+      "def_id": 37,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_384_loop1.body",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_384",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 154,
+        "end_line": 158
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false,
+      "loop": { "id": 1, "pos": [ 1 ], "is_body": true },
+      "parent_lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_384"
+    },
+    {
+      "def_id": 37,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_384_loop1",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_384",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 154,
+        "end_line": 158
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false,
+      "loop": { "id": 1, "pos": [ 1 ], "is_body": false },
+      "parent_lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_384"
+    },
+    {
+      "def_id": 37,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_384",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_384",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 135,
+        "end_line": 251
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 38,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_512_loop0.body",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_512",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 273,
+        "end_line": 277
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false,
+      "loop": { "id": 0, "pos": [ 0 ], "is_body": true },
+      "parent_lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_512"
+    },
+    {
+      "def_id": 38,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_512_loop0",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_512",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 273,
+        "end_line": 277
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false,
+      "loop": { "id": 0, "pos": [ 0 ], "is_body": false },
+      "parent_lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_512"
+    },
+    {
+      "def_id": 38,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_512_loop1.body",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_512",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 279,
+        "end_line": 283
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false,
+      "loop": { "id": 1, "pos": [ 1 ], "is_body": true },
+      "parent_lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_512"
+    },
+    {
+      "def_id": 38,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_512_loop1",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_512",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 279,
+        "end_line": 283
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false,
+      "loop": { "id": 1, "pos": [ 1 ], "is_body": false },
+      "parent_lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_512"
+    },
+    {
+      "def_id": 38,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_512",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_512",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 260,
+        "end_line": 376
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 29,
+      "lean_name": "libcrux_hmac.Error.Insts.CoreFmtDebug.fmt",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::{impl core::fmt::Debug for libcrux_hmac::Error}::fmt",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hmac.rs",
+        "begin_line": 48,
+        "end_line": 48
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 30,
+      "lean_name": "libcrux_hmac.Algorithm.Insts.CoreCloneClone.clone",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::{impl core::clone::Clone for libcrux_hmac::Algorithm}::clone",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hmac.rs",
+        "begin_line": 54,
+        "end_line": 54
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 31,
+      "lean_name": "libcrux_hmac.Algorithm.Insts.CoreFmtDebug.fmt",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::{impl core::fmt::Debug for libcrux_hmac::Algorithm}::fmt",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hmac.rs",
+        "begin_line": 54,
+        "end_line": 54
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 32,
+      "lean_name": "libcrux_hmac.Algorithm.Insts.CoreCmpPartialEqAlgorithm.eq",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::{impl core::cmp::PartialEq<libcrux_hmac::Algorithm> for libcrux_hmac::Algorithm}::eq",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hmac.rs",
+        "begin_line": 54,
+        "end_line": 54
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 19,
+      "lean_name": "libcrux_hmac.tag_size",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::tag_size",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hmac.rs",
+        "begin_line": 64,
+        "end_line": 70
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 24,
+      "lean_name": "libcrux_hmac.impl_hacl.hmac_sha2_512",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::impl_hacl::hmac_sha2_512",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/impl_hacl.rs",
+        "begin_line": 22,
+        "end_line": 22
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 23,
+      "lean_name": "libcrux_hmac.impl_hacl.hmac_sha2_384",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::impl_hacl::hmac_sha2_384",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/impl_hacl.rs",
+        "begin_line": 21,
+        "end_line": 21
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 22,
+      "lean_name": "libcrux_hmac.impl_hacl.hmac_sha2_256",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::impl_hacl::hmac_sha2_256",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/impl_hacl.rs",
+        "begin_line": 20,
+        "end_line": 20
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 20,
+      "lean_name": "libcrux_hmac.hmac",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hmac",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hmac.rs",
+        "begin_line": 76,
+        "end_line": 89
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 44,
+      "lean_name": "libcrux_hmac.incremental.HmacStream.Insts.Libcrux_hmacHmacState.finalize",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::incremental::{impl libcrux_hmac::HmacState<OUTLEN> for libcrux_hmac::incremental::HmacStream<Digest, Clause0_Clause0_IncrementalState, OUTLEN, BLOCK>}::finalize",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/incremental.rs",
+        "begin_line": 72,
+        "end_line": 82
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 258,
+      "lean_name": "libcrux_hmac.incremental.HmacStateHmacStreamOUTLEN.update.closure.Insts.CoreOpsFunctionFnOnceTupleUpdateErrorError.call_once",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::incremental::{impl libcrux_hmac::HmacState<OUTLEN> for libcrux_hmac::incremental::HmacStream<Digest, Clause0_Clause0_IncrementalState, OUTLEN, BLOCK>}::update::{impl core::ops::function::FnOnce<(libcrux_traits::digest::UpdateError,), libcrux_hmac::Error> for libcrux_hmac::incremental::{impl libcrux_hmac::HmacState<OUTLEN> for libcrux_hmac::incremental::HmacStream<Digest, Clause0_Clause0_IncrementalState, OUTLEN, BLOCK>}::update::{closure}<Digest, Clause0_Clause0_IncrementalState, OUTLEN, BLOCK>}::call_once",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/incremental.rs",
+        "begin_line": 69,
+        "end_line": 69
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 43,
+      "lean_name": "libcrux_hmac.incremental.HmacStream.Insts.Libcrux_hmacHmacState.update",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::incremental::{impl libcrux_hmac::HmacState<OUTLEN> for libcrux_hmac::incremental::HmacStream<Digest, Clause0_Clause0_IncrementalState, OUTLEN, BLOCK>}::update",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/incremental.rs",
+        "begin_line": 68,
+        "end_line": 70
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 42,
+      "lean_name": "libcrux_hmac.incremental.HmacStream.Insts.Libcrux_hmacHmacState.new_loop.body",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::incremental::{impl libcrux_hmac::HmacState<OUTLEN> for libcrux_hmac::incremental::HmacStream<Digest, Clause0_Clause0_IncrementalState, OUTLEN, BLOCK>}::new",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/incremental.rs",
+        "begin_line": 51,
+        "end_line": 54
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false,
+      "loop": { "id": 0, "pos": [ 0 ], "is_body": true },
+      "parent_lean_name": "libcrux_hmac.incremental.HmacStream.Insts.Libcrux_hmacHmacState.new"
+    },
+    {
+      "def_id": 42,
+      "lean_name": "libcrux_hmac.incremental.HmacStream.Insts.Libcrux_hmacHmacState.new_loop",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::incremental::{impl libcrux_hmac::HmacState<OUTLEN> for libcrux_hmac::incremental::HmacStream<Digest, Clause0_Clause0_IncrementalState, OUTLEN, BLOCK>}::new",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/incremental.rs",
+        "begin_line": 51,
+        "end_line": 54
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false,
+      "loop": { "id": 0, "pos": [ 0 ], "is_body": false },
+      "parent_lean_name": "libcrux_hmac.incremental.HmacStream.Insts.Libcrux_hmacHmacState.new"
+    },
+    {
+      "def_id": 42,
+      "lean_name": "libcrux_hmac.incremental.HmacStream.Insts.Libcrux_hmacHmacState.new",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::incremental::{impl libcrux_hmac::HmacState<OUTLEN> for libcrux_hmac::incremental::HmacStream<Digest, Clause0_Clause0_IncrementalState, OUTLEN, BLOCK>}::new",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/incremental.rs",
+        "begin_line": 27,
+        "end_line": 66
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": true,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 25,
+      "lean_name": "libcrux_hmac.incremental.hmac_slices",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::incremental::hmac_slices",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/incremental.rs",
+        "begin_line": 94,
+        "end_line": 107
+      },
+      "is_opaque": true,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 26,
+      "lean_name": "libcrux_hmac.incremental.hmac_sha2_256_slices",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::incremental::hmac_sha2_256_slices",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/incremental.rs",
+        "begin_line": 111,
+        "end_line": 113
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 27,
+      "lean_name": "libcrux_hmac.incremental.hmac_sha2_384_slices",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::incremental::hmac_sha2_384_slices",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/incremental.rs",
+        "begin_line": 117,
+        "end_line": 119
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    },
+    {
+      "def_id": 28,
+      "lean_name": "libcrux_hmac.incremental.hmac_sha2_512_slices",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::incremental::hmac_sha2_512_slices",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/incremental.rs",
+        "begin_line": 123,
+        "end_line": 125
+      },
+      "is_opaque": false,
+      "can_fail": true,
+      "can_diverge": false,
+      "is_rec": false,
+      "reducible": false
+    }
+  ],
+  "types": [
+    {
+      "def_id": 21,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha256Hash",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::Sha256Hash",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 88,
+        "end_line": 88
+      }
+    },
+    {
+      "def_id": 31,
+      "lean_name": "libcrux_hmac.libcrux_traits.digest.UpdateError",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_traits::digest::UpdateError",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-traits-0.0.8/src/digest.rs",
+        "begin_line": 12,
+        "end_line": 12
+      }
+    },
+    {
+      "def_id": 22,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_hacl.Sha256",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_hacl::Sha256",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_hacl.rs",
+        "begin_line": 149,
+        "end_line": 159
+      }
+    },
+    {
+      "def_id": 23,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha384Hash",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::Sha384Hash",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 90,
+        "end_line": 90
+      }
+    },
+    {
+      "def_id": 24,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_hacl.Sha384",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_hacl::Sha384",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_hacl.rs",
+        "begin_line": 183,
+        "end_line": 193
+      }
+    },
+    {
+      "def_id": 25,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha512Hash",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::Sha512Hash",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 91,
+        "end_line": 91
+      }
+    },
+    {
+      "def_id": 26,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_hacl.Sha512",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_hacl::Sha512",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_hacl.rs",
+        "begin_line": 172,
+        "end_line": 182
+      }
+    },
+    {
+      "def_id": 19,
+      "lean_name": "libcrux_hmac.hacl.hmac.__uint32_t_uint32_t",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::__uint32_t_uint32_t",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 14,
+        "end_line": 17
+      }
+    },
+    {
+      "def_id": 5,
+      "lean_name": "libcrux_hmac.Error",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::Error",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hmac.rs",
+        "begin_line": 49,
+        "end_line": 51
+      }
+    },
+    {
+      "def_id": 6,
+      "lean_name": "libcrux_hmac.Algorithm",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::Algorithm",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hmac.rs",
+        "begin_line": 55,
+        "end_line": 61
+      }
+    },
+    {
+      "def_id": 8,
+      "lean_name": "libcrux_hmac.incremental.HmacStream",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::incremental::HmacStream",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/incremental.rs",
+        "begin_line": 10,
+        "end_line": 18
+      }
+    },
+    {
+      "def_id": 33,
+      "lean_name": "libcrux_hmac.incremental.HmacStateHmacStreamOUTLEN.update.closure",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::incremental::{impl libcrux_hmac::HmacState<OUTLEN> for libcrux_hmac::incremental::HmacStream<Digest, Clause0_Clause0_IncrementalState, OUTLEN, BLOCK>}::update::{closure}",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/incremental.rs",
+        "begin_line": 69,
+        "end_line": 69
+      }
+    }
+  ],
+  "globals": [
+    {
+      "def_id": 69,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.h256",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::h256",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 24,
+        "end_line": 24
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 70,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.h384",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::h384",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 35,
+        "end_line": 35
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 71,
+      "lean_name": "libcrux_hmac.libcrux_sha2.hacl.h512",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::hacl::h512",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/hacl.rs",
+        "begin_line": 46,
+        "end_line": 46
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 20,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_256.i_7",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_256::i#7",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 51,
+        "end_line": 55
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 19,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_256.i_6",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_256::i#6",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 51,
+        "end_line": 55
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 18,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_256.i_5",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_256::i#5",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 51,
+        "end_line": 55
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 17,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_256.i_4",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_256::i#4",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 51,
+        "end_line": 55
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 16,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_256.i_3",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_256::i#3",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 51,
+        "end_line": 55
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 15,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_256.i_2",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_256::i#2",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 51,
+        "end_line": 55
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 14,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_256.i_1",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_256::i#1",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 51,
+        "end_line": 55
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 13,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_256.i",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_256::i",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 51,
+        "end_line": 55
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 36,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_384.i_7",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_384::i#7",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 160,
+        "end_line": 164
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 35,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_384.i_6",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_384::i#6",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 160,
+        "end_line": 164
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 34,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_384.i_5",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_384::i#5",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 160,
+        "end_line": 164
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 33,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_384.i_4",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_384::i#4",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 160,
+        "end_line": 164
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 32,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_384.i_3",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_384::i#3",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 160,
+        "end_line": 164
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 31,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_384.i_2",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_384::i#2",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 160,
+        "end_line": 164
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 30,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_384.i_1",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_384::i#1",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 160,
+        "end_line": 164
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 29,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_384.i",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_384::i",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 160,
+        "end_line": 164
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 52,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_512.i_7",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_512::i#7",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 285,
+        "end_line": 289
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 51,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_512.i_6",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_512::i#6",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 285,
+        "end_line": 289
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 50,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_512.i_5",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_512::i#5",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 285,
+        "end_line": 289
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 49,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_512.i_4",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_512::i#4",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 285,
+        "end_line": 289
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 48,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_512.i_3",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_512::i#3",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 285,
+        "end_line": 289
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 47,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_512.i_2",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_512::i#2",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 285,
+        "end_line": 289
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 46,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_512.i_1",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_512::i#1",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 285,
+        "end_line": 289
+      },
+      "can_fail": true
+    },
+    {
+      "def_id": 45,
+      "lean_name": "libcrux_hmac.hacl.hmac.compute_sha2_512.i",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::compute_sha2_512::i",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 285,
+        "end_line": 289
+      },
+      "can_fail": true
+    }
+  ],
+  "trait_decls": [
+    {
+      "def_id": 13,
+      "lean_name": "libcrux_hmac.libcrux_traits.digest.InitializeDigestState",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_traits::digest::InitializeDigestState",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-traits-0.0.8/src/digest.rs",
+        "begin_line": 55,
+        "end_line": 55
+      }
+    },
+    {
+      "def_id": 14,
+      "lean_name": "libcrux_hmac.libcrux_traits.digest.DigestIncrementalBase",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_traits::digest::DigestIncrementalBase",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-traits-0.0.8/src/digest.rs",
+        "begin_line": 45,
+        "end_line": 45
+      }
+    },
+    {
+      "def_id": 12,
+      "lean_name": "libcrux_hmac.libcrux_traits.digest.arrayref.DigestIncremental",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_traits::digest::arrayref::DigestIncremental",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-traits-0.0.8/src/digest/arrayref.rs",
+        "begin_line": 31,
+        "end_line": 31
+      }
+    },
+    {
+      "def_id": 4,
+      "lean_name": "libcrux_hmac.HmacState",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::HmacState",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hmac.rs",
+        "begin_line": 34,
+        "end_line": 45
+      }
+    }
+  ],
+  "trait_impls": [
+    {
+      "def_id": 25,
+      "lean_name": "libcrux_hmac.core.num.error.TryFromIntError.Insts.CoreFmtDebug",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "core::num::error::{impl core::fmt::Debug for core::num::error::TryFromIntError}",
+      "is_local": false,
+      "source": {
+        "file": "/rustc/library/core/src/num/error.rs",
+        "begin_line": 8,
+        "end_line": 8
+      },
+      "impl_trait_def_id": 6,
+      "impl_trait_rust_name": "core::fmt::Debug",
+      "impl_trait_is_builtin": true
+    },
+    {
+      "def_id": 27,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_hacl.Sha256.Insts.Libcrux_traitsDigestInitializeDigestState",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::InitializeDigestState for libcrux_sha2::impl_hacl::Sha256}",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 88,
+        "end_line": 88
+      },
+      "impl_trait_def_id": 13,
+      "impl_trait_rust_name": "libcrux_traits::digest::InitializeDigestState",
+      "impl_trait_is_builtin": false
+    },
+    {
+      "def_id": 46,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha256Hash.Insts.Libcrux_traitsDigestDigestIncrementalBaseSha256",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::DigestIncrementalBase<libcrux_sha2::impl_hacl::Sha256> for libcrux_sha2::impl_digest_trait::Sha256Hash}",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 88,
+        "end_line": 88
+      },
+      "impl_trait_def_id": 14,
+      "impl_trait_rust_name": "libcrux_traits::digest::DigestIncrementalBase",
+      "impl_trait_is_builtin": false
+    },
+    {
+      "def_id": 26,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha256Hash.Insts.Libcrux_traitsDigestArrayrefDigestIncrementalSha25632",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::arrayref::DigestIncremental<libcrux_sha2::impl_hacl::Sha256, 32usize> for libcrux_sha2::impl_digest_trait::Sha256Hash}",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 88,
+        "end_line": 88
+      },
+      "impl_trait_def_id": 12,
+      "impl_trait_rust_name": "libcrux_traits::digest::arrayref::DigestIncremental",
+      "impl_trait_is_builtin": false
+    },
+    {
+      "def_id": 29,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_hacl.Sha384.Insts.Libcrux_traitsDigestInitializeDigestState",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::InitializeDigestState for libcrux_sha2::impl_hacl::Sha384}",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 90,
+        "end_line": 90
+      },
+      "impl_trait_def_id": 13,
+      "impl_trait_rust_name": "libcrux_traits::digest::InitializeDigestState",
+      "impl_trait_is_builtin": false
+    },
+    {
+      "def_id": 47,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha384Hash.Insts.Libcrux_traitsDigestDigestIncrementalBaseSha384",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::DigestIncrementalBase<libcrux_sha2::impl_hacl::Sha384> for libcrux_sha2::impl_digest_trait::Sha384Hash}",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 90,
+        "end_line": 90
+      },
+      "impl_trait_def_id": 14,
+      "impl_trait_rust_name": "libcrux_traits::digest::DigestIncrementalBase",
+      "impl_trait_is_builtin": false
+    },
+    {
+      "def_id": 28,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha384Hash.Insts.Libcrux_traitsDigestArrayrefDigestIncrementalSha38448",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::arrayref::DigestIncremental<libcrux_sha2::impl_hacl::Sha384, 48usize> for libcrux_sha2::impl_digest_trait::Sha384Hash}",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 90,
+        "end_line": 90
+      },
+      "impl_trait_def_id": 12,
+      "impl_trait_rust_name": "libcrux_traits::digest::arrayref::DigestIncremental",
+      "impl_trait_is_builtin": false
+    },
+    {
+      "def_id": 31,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_hacl.Sha512.Insts.Libcrux_traitsDigestInitializeDigestState",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::InitializeDigestState for libcrux_sha2::impl_hacl::Sha512}",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 91,
+        "end_line": 91
+      },
+      "impl_trait_def_id": 13,
+      "impl_trait_rust_name": "libcrux_traits::digest::InitializeDigestState",
+      "impl_trait_is_builtin": false
+    },
+    {
+      "def_id": 48,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha512Hash.Insts.Libcrux_traitsDigestDigestIncrementalBaseSha512",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::DigestIncrementalBase<libcrux_sha2::impl_hacl::Sha512> for libcrux_sha2::impl_digest_trait::Sha512Hash}",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 91,
+        "end_line": 91
+      },
+      "impl_trait_def_id": 14,
+      "impl_trait_rust_name": "libcrux_traits::digest::DigestIncrementalBase",
+      "impl_trait_is_builtin": false
+    },
+    {
+      "def_id": 30,
+      "lean_name": "libcrux_hmac.libcrux_sha2.impl_digest_trait.Sha512Hash.Insts.Libcrux_traitsDigestArrayrefDigestIncrementalSha51264",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_sha2::impl_digest_trait::{impl libcrux_traits::digest::arrayref::DigestIncremental<libcrux_sha2::impl_hacl::Sha512, 64usize> for libcrux_sha2::impl_digest_trait::Sha512Hash}",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-sha2-0.0.8/src/impl_digest_trait.rs",
+        "begin_line": 91,
+        "end_line": 91
+      },
+      "impl_trait_def_id": 12,
+      "impl_trait_rust_name": "libcrux_traits::digest::arrayref::DigestIncremental",
+      "impl_trait_is_builtin": false
+    },
+    {
+      "def_id": 41,
+      "lean_name": "libcrux_hmac.libcrux_traits.digest.UpdateError.Insts.CoreFmtDebug",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_traits::digest::{impl core::fmt::Debug for libcrux_traits::digest::UpdateError}",
+      "is_local": false,
+      "source": {
+        "file": "/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/libcrux-traits-0.0.8/src/digest.rs",
+        "begin_line": 11,
+        "end_line": 11
+      },
+      "impl_trait_def_id": 6,
+      "impl_trait_rust_name": "core::fmt::Debug",
+      "impl_trait_is_builtin": true
+    },
+    {
+      "def_id": 18,
+      "lean_name": "libcrux_hmac.hacl.hmac.__uint32_t_uint32_t.Insts.CoreMarkerStructuralPartialEq",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::{impl core::marker::StructuralPartialEq for libcrux_hmac::hacl::hmac::__uint32_t_uint32_t}",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 13,
+        "end_line": 13
+      },
+      "impl_trait_def_id": 9,
+      "impl_trait_rust_name": "core::marker::StructuralPartialEq",
+      "impl_trait_is_builtin": true
+    },
+    {
+      "def_id": 19,
+      "lean_name": "libcrux_hmac.hacl.hmac.__uint32_t_uint32_t.Insts.CoreCmpPartialEq__uint32_t_uint32_t",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::{impl core::cmp::PartialEq<libcrux_hmac::hacl::hmac::__uint32_t_uint32_t> for libcrux_hmac::hacl::hmac::__uint32_t_uint32_t}",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 13,
+        "end_line": 13
+      },
+      "impl_trait_def_id": 10,
+      "impl_trait_rust_name": "core::cmp::PartialEq",
+      "impl_trait_is_builtin": true
+    },
+    {
+      "def_id": 21,
+      "lean_name": "libcrux_hmac.hacl.hmac.__uint32_t_uint32_t.Insts.CoreCloneClone",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::{impl core::clone::Clone for libcrux_hmac::hacl::hmac::__uint32_t_uint32_t}",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 13,
+        "end_line": 13
+      },
+      "impl_trait_def_id": 0,
+      "impl_trait_rust_name": "core::clone::Clone",
+      "impl_trait_is_builtin": true
+    },
+    {
+      "def_id": 22,
+      "lean_name": "libcrux_hmac.hacl.hmac.__uint32_t_uint32_t.Insts.CoreMarkerCopy",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::hacl::hmac::{impl core::marker::Copy for libcrux_hmac::hacl::hmac::__uint32_t_uint32_t}",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hacl/hmac.rs",
+        "begin_line": 13,
+        "end_line": 13
+      },
+      "impl_trait_def_id": 7,
+      "impl_trait_rust_name": "core::marker::Copy",
+      "impl_trait_is_builtin": true
+    },
+    {
+      "def_id": 6,
+      "lean_name": "libcrux_hmac.Error.Insts.CoreFmtDebug",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::{impl core::fmt::Debug for libcrux_hmac::Error}",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hmac.rs",
+        "begin_line": 48,
+        "end_line": 48
+      },
+      "impl_trait_def_id": 6,
+      "impl_trait_rust_name": "core::fmt::Debug",
+      "impl_trait_is_builtin": true
+    },
+    {
+      "def_id": 9,
+      "lean_name": "libcrux_hmac.Algorithm.Insts.CoreCloneClone",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::{impl core::clone::Clone for libcrux_hmac::Algorithm}",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hmac.rs",
+        "begin_line": 54,
+        "end_line": 54
+      },
+      "impl_trait_def_id": 0,
+      "impl_trait_rust_name": "core::clone::Clone",
+      "impl_trait_is_builtin": true
+    },
+    {
+      "def_id": 7,
+      "lean_name": "libcrux_hmac.Algorithm.Insts.CoreMarkerCopy",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::{impl core::marker::Copy for libcrux_hmac::Algorithm}",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hmac.rs",
+        "begin_line": 54,
+        "end_line": 54
+      },
+      "impl_trait_def_id": 7,
+      "impl_trait_rust_name": "core::marker::Copy",
+      "impl_trait_is_builtin": true
+    },
+    {
+      "def_id": 10,
+      "lean_name": "libcrux_hmac.Algorithm.Insts.CoreFmtDebug",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::{impl core::fmt::Debug for libcrux_hmac::Algorithm}",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hmac.rs",
+        "begin_line": 54,
+        "end_line": 54
+      },
+      "impl_trait_def_id": 6,
+      "impl_trait_rust_name": "core::fmt::Debug",
+      "impl_trait_is_builtin": true
+    },
+    {
+      "def_id": 11,
+      "lean_name": "libcrux_hmac.Algorithm.Insts.CoreMarkerStructuralPartialEq",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::{impl core::marker::StructuralPartialEq for libcrux_hmac::Algorithm}",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hmac.rs",
+        "begin_line": 54,
+        "end_line": 54
+      },
+      "impl_trait_def_id": 9,
+      "impl_trait_rust_name": "core::marker::StructuralPartialEq",
+      "impl_trait_is_builtin": true
+    },
+    {
+      "def_id": 12,
+      "lean_name": "libcrux_hmac.Algorithm.Insts.CoreCmpPartialEqAlgorithm",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::{impl core::cmp::PartialEq<libcrux_hmac::Algorithm> for libcrux_hmac::Algorithm}",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/hmac.rs",
+        "begin_line": 54,
+        "end_line": 54
+      },
+      "impl_trait_def_id": 10,
+      "impl_trait_rust_name": "core::cmp::PartialEq",
+      "impl_trait_is_builtin": true
+    },
+    {
+      "def_id": 45,
+      "lean_name": "libcrux_hmac.incremental.HmacStateHmacStreamOUTLEN.update.closure.Insts.CoreOpsFunctionFnOnceTupleUpdateErrorError",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::incremental::{impl libcrux_hmac::HmacState<OUTLEN> for libcrux_hmac::incremental::HmacStream<Digest, Clause0_Clause0_IncrementalState, OUTLEN, BLOCK>}::update::{impl core::ops::function::FnOnce<(libcrux_traits::digest::UpdateError,), libcrux_hmac::Error> for libcrux_hmac::incremental::{impl libcrux_hmac::HmacState<OUTLEN> for libcrux_hmac::incremental::HmacStream<Digest, Clause0_Clause0_IncrementalState, OUTLEN, BLOCK>}::update::{closure}<Digest, Clause0_Clause0_IncrementalState, OUTLEN, BLOCK>}",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/incremental.rs",
+        "begin_line": 69,
+        "end_line": 69
+      },
+      "impl_trait_def_id": 18,
+      "impl_trait_rust_name": "core::ops::function::FnOnce",
+      "impl_trait_is_builtin": true
+    },
+    {
+      "def_id": 13,
+      "lean_name": "libcrux_hmac.incremental.HmacStream.Insts.Libcrux_hmacHmacState",
+      "lean_file": "LibcruxHmac.lean",
+      "rust_name": "libcrux_hmac::incremental::{impl libcrux_hmac::HmacState<OUTLEN> for libcrux_hmac::incremental::HmacStream<Digest, Clause0_Clause0_IncrementalState, OUTLEN, BLOCK>}",
+      "is_local": true,
+      "source": {
+        "file": "crates/algorithms/hmac/src/incremental.rs",
+        "begin_line": 20,
+        "end_line": 83
+      },
+      "impl_trait_def_id": 4,
+      "impl_trait_rust_name": "libcrux_hmac::HmacState",
+      "impl_trait_is_builtin": false
+    }
+  ]
+}

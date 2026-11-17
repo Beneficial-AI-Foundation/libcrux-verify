@@ -1,0 +1,40 @@
+Supporting patch: libcrux-sha2, libcrux-hacl-rs and libcrux-traits become registry dependencies at the baseline-pinned versions
+Change: Cargo.toml: remove sha2, hacl-rs, secrets and traits from the workspace members; replace the path entries of libcrux-sha2 (=0.0.8), libcrux-hacl-rs (=0.0.5) and libcrux-traits (=0.0.8) in [workspace.dependencies] by registry versions with no path; drop the libcrux-secrets path entry (the published traits pulls libcrux-secrets from the registry). libcrux-macros stays a path crate.
+Why: with the three crates in the prepared copy, the LLBC carries foreign file entries (contents null) that the engine's llbcProblems check refuses. As registry dependencies they are not prepared-copy sources.
+Behaviour: no Rust source of libcrux-hmac changes. The three published .crate files were byte-compared with the repo at c5fb80f37530ee9b2df9501ae5ff8cb4a973a4bd: libcrux-sha2 0.0.8 and libcrux-traits 0.0.8 identical in every source file and in Cargo.toml.orig; libcrux-hacl-rs 0.0.5 identical in every Rust file and in Cargo.toml.orig, differing only in CHANGELOG.md (two link targets) and an extra Readme.md (published from 451259bb704d4a9dab8cd31ac68a97e766fbd2bc). The owner accepted that documentation-only difference.
+Classification: Supporting (manifest only; A-mechanical in form, with an A-opacity effect: the three crates leave the extraction and enter the trusted boundary)
+Assumptions: the published crates are the code the baseline compiles (byte-match evidence above); the registry and Cargo.lock keep serving these exact versions and checksums; libcrux-secrets and rand resolve from the registry to versions compatible with the published traits.
+Obligations: none for libcrux_hmac coverage as long as sha2, hacl-rs and traits are outside required coverage; any later claim about their behaviour needs its own source-grounded model.
+Independent: no
+
+diff --git a/Cargo.toml b/Cargo.toml
+index d363bf9f7..8e95f3177 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -1,11 +1,7 @@
+ [workspace]
+ members = [
+     "crates/algorithms/hmac",
+-    "crates/algorithms/sha2",
+-    "crates/utils/hacl-rs",
+     "crates/utils/macros",
+-    "crates/utils/secrets",
+-    "traits",
+ ]
+ 
+ resolver = "2"
+@@ -25,11 +21,10 @@ allow-branch = ["main"]
+ 
+ [workspace.dependencies]
+ hax-lib = { version = "0.3.7" }
+-libcrux-hacl-rs = { version = "=0.0.5", path = "crates/utils/hacl-rs" }
+-libcrux-sha2 = { version = "=0.0.8", path = "crates/algorithms/sha2" }
+-libcrux-traits = { version = "=0.0.8", path = "traits" }
++libcrux-hacl-rs = { version = "=0.0.5" }
++libcrux-sha2 = { version = "=0.0.8" }
++libcrux-traits = { version = "=0.0.8" }
+ libcrux-macros = { version = "=0.0.3", path = "crates/utils/macros" }
+-libcrux-secrets = { version = "=0.0.6", path = "crates/utils/secrets" }
+ rand = { version = "0.10", default-features = false }
+ crabgrind = "0.2.6"
+ 

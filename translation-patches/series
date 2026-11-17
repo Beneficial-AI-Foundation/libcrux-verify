@@ -1,0 +1,8 @@
+01-trim-workspace-manifest.patch
+02-hmac-drop-kats-devdep.patch
+03-registry-deps.patch
+04-sha2-256-read-on-ipad-line.patch
+05-sha2-384-read-on-ipad-line.patch
+06-sha2-512-read-on-ipad-line.patch
+07-rename-n-blocks-middle-dot.patch
+08-hmac-inline-wrap-bufalloc-line-neutral.patch

@@ -1,0 +1,23 @@
+Translation patch: compute_sha2_384 reads key_block once on the ipad allocation line (aeneas #1513 workaround, line-preserving)
+Change: crates/algorithms/hmac/src/hacl/hmac.rs, compute_sha2_384: the statement `let _ = (&key_block)[0usize];` is appended to the end of the existing line 147, `let mut ipad: Box<[u8]> = vec![0x36u8; l as usize].into_boxed_slice();`, after its final semicolon. No line is added, removed or moved, and no existing token changes its line or column. The loops are not changed.
+Why: Aeneas stops at the first loop with "Unimplemented" (hmac.rs lines 148:4-152:5 in the unpatched source, compiler source interp/Interp.ml line 686) and emits sorry for the whole body of compute_sha2_384. The trigger is a loop that reads a slice that was written through a split_at_mut field earlier in the function (open aeneas issue 1513). An earlier probe (while loops instead of the range loop) did not help; a read of the written data between the write and the loop did, in a standalone minimal case. Placement: an earlier candidate (05-sha2-384-read-before-loop) put the statement on a line of its own before the loop; that moved every later line of the file by one, and the independent assessor recommended rejecting it because a caller's panic hook can see the source line of an existing panic. This candidate keeps every existing line number and every column of an existing token.
+Behaviour: key_block is a Box<[u8]> of length l = 128 (`vec![0x00u8; l as usize]`, l is the constant 128), so index 0 is always in bounds and the added statement cannot panic; it binds nothing and its value is discarded, so no state changes and every later statement sees the same values. The statement runs at the same point in the execution as in the rejected candidate (after the allocation of ipad, before the first loop); only its source position differs. Not proved: this is a claim for the independent assessor.
+Classification: B
+Assumptions: the added read has no observable effect (in bounds because the length is the constant 128; no binding; the type is u8, which is Copy); the added read is the only new panic-capable operation, and no existing panic-capable operation changes line or column (the series acceptance check compares their positions before and after); the only reason for the patch is to change what the Aeneas interpreter sees, so the claim that it does not change the function's meaning is the semantic judgment that makes this Category B.
+Obligations: independent assessor confirms the no-effect argument above and the position argument; owner stamps the ratification bound to this patch's sha256 before the run may complete. If upstream aeneas fixes issue 1513 the patch is retired.
+Evidence: equivalence-gate/05-sha2-384-read-on-ipad-line.md
+Independent: yes
+
+diff --git a/crates/algorithms/hmac/src/hacl/hmac.rs b/crates/algorithms/hmac/src/hacl/hmac.rs
+index 4cdd72c..9366cf3 100644
+--- a/crates/algorithms/hmac/src/hacl/hmac.rs
++++ b/crates/algorithms/hmac/src/hacl/hmac.rs
+@@ -144,7 +144,7 @@ pub fn compute_sha2_384(dst: &mut [u8], key: &[u8], key_len: u32, data: &[u8], d
+     } else {
+         hash_sha2::hash_384(zeroes.0, key, key_len)
+     };
+-    let mut ipad: Box<[u8]> = vec![0x36u8; l as usize].into_boxed_slice();
++    let mut ipad: Box<[u8]> = vec![0x36u8; l as usize].into_boxed_slice(); let _ = (&key_block)[0usize];
+     for i in 0u32..l {
+         let xi: u8 = (&ipad)[i as usize];
+         let yi: u8 = (&key_block)[i as usize];

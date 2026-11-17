@@ -1,0 +1,41 @@
+Translation patch: hmac() calls hmac_sha2_{256,384,512} directly instead of through the closure helper wrap_bufalloc, line-neutral (Lean Fn trait has no slot for a &mut argument)
+Change: crates/algorithms/hmac/src/hmac.rs, hmac(): lines 83, 84 and 85, the three match arms `Algorithm::ShaNNN => wrap_bufalloc(|buf| hmac_sha2_NNN(buf, key, data)),`, each become one line holding a block that allocates `let mut buf = [0u8; N];` with N = 32, 48, 64, calls `hmac_sha2_NNN(&mut buf, key, data);` and returns `buf.to_vec()`. The private helper `#[inline(always)] fn wrap_bufalloc<const N: usize, F: Fn(&mut [u8; N])>(f: F) -> Vec<u8>` (lines 91 to 96) is deleted, because it has no remaining caller and Charon still extracts unused private items; its six lines are replaced by six blank lines. The file keeps its 96 lines and every other line keeps its number.
+Why: Aeneas translates a closure that takes `&mut [u8; N]` and returns () into `Fn`, `FnMut` and `FnOnce` trait impls whose `call` returns the updated array (the backward value of the `&mut` argument). The Lean backend's `core.ops.function.Fn` class has `call : Self -> Args -> Result Output` and no slot for that value, so the generated file has one error in `wrap_bufalloc` (`expected a product type, got PUnit`, where the caller destructures `(_, buf1)`) and nine type mismatches in the three closure impls (closure, closure_1, closure_2). Both defects come from the closure/`Fn` path, so removing the closures removes both. Placement: line-neutral so that no existing source line moves.
+Behaviour: after inlining, `hmac` allocates the same zeroed array (N is the tag length that the closure's `hmac_sha2_NNN` argument type fixed: `&mut [u8; 32]`, `&mut [u8; 48]`, `&mut [u8; 64]`), passes it by unique reference to the same function with the same `key` and `data`, and converts the same array to a `Vec<u8>`; the `truncate(tag_length)` that follows is unchanged. `#[inline(always)]` already asked for the helper to be inlined. Positions: no operation in the replaced text can raise a panic with a location in this file (no indexing, no arithmetic, no unwrap or expect); the calls `hmac_sha2_NNN` are not `#[track_caller]` (the `unwrap` calls inside them report impl_hacl.rs lines 20 to 22), so a panic inside them is not reported at the call site in this file. Not proved: the claim that the inlined code is the helper's body instantiated at N = 32, 48, 64 with `f` replaced by the closure body is for the independent assessor.
+Classification: B
+Assumptions: the helper's only effect is the zero-initialised stack array, the single call `f(&mut buf)` and `buf.to_vec()`; no other function in the crate calls `wrap_bufalloc` (searched: three call sites, all in `hmac`); the closure bodies capture only `key` and `data` by shared reference and do not otherwise touch state; no panic location in this file changes line or column (the series acceptance check compares their positions before and after). The claim that the rewritten function behaves like the original is a semantic judgment, which is what makes this Category B.
+Obligations: independent assessor confirms the inlining argument above, in particular the three array lengths against the `hmac_sha2_NNN` signatures, and the position argument; owner stamps the ratification bound to this patch's sha256 before the run may complete. If the Aeneas Lean backend later models `Fn` with the backward value of `&mut` arguments the patch is retired.
+Evidence: equivalence-gate/08-hmac-inline-wrap-bufalloc-line-neutral.md
+Independent: yes
+
+diff --git a/crates/algorithms/hmac/src/hmac.rs b/crates/algorithms/hmac/src/hmac.rs
+index caa11a7..fe6a499 100644
+--- a/crates/algorithms/hmac/src/hmac.rs
++++ b/crates/algorithms/hmac/src/hmac.rs
+@@ -80,17 +80,17 @@ pub fn hmac(alg: Algorithm, key: &[u8], data: &[u8], tag_length: Option<usize>)
+         None => native_tag_length,
+     };
+     let mut dst: Vec<_> = match alg {
+-        Algorithm::Sha256 => wrap_bufalloc(|buf| hmac_sha2_256(buf, key, data)),
+-        Algorithm::Sha384 => wrap_bufalloc(|buf| hmac_sha2_384(buf, key, data)),
+-        Algorithm::Sha512 => wrap_bufalloc(|buf| hmac_sha2_512(buf, key, data)),
++        Algorithm::Sha256 => { let mut buf = [0u8; 32]; hmac_sha2_256(&mut buf, key, data); buf.to_vec() },
++        Algorithm::Sha384 => { let mut buf = [0u8; 48]; hmac_sha2_384(&mut buf, key, data); buf.to_vec() },
++        Algorithm::Sha512 => { let mut buf = [0u8; 64]; hmac_sha2_512(&mut buf, key, data); buf.to_vec() },
+     };
+     dst.truncate(tag_length);
+     dst
+ }
+ 
+-#[inline(always)]
+-fn wrap_bufalloc<const N: usize, F: Fn(&mut [u8; N])>(f: F) -> Vec<u8> {
+-    let mut buf = [0u8; N];
+-    f(&mut buf);
+-    buf.to_vec()
+-}
++
++
++
++
++
++

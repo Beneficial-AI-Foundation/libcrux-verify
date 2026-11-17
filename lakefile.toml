@@ -10,3 +10,7 @@ rev = "nightly-2026.11.09-5a392f4"
 
 [[lean_lib]]
 name = "LibcruxHmac"
+globs = ["LibcruxHmac.+"]
+
+[lean_lib.leanOptions]
+weak.linter.style.nameCheck = false

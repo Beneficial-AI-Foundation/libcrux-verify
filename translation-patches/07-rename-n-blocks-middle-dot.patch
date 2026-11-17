@@ -1,0 +1,97 @@
+Translation patch: rename the six local bindings n_blocks· (U+00B7) in the hacl-generated hmac code to n_blocks_prev
+Change: crates/algorithms/hmac/src/hacl/hmac.rs, compute_sha2_256 / compute_sha2_384 / compute_sha2_512 (two blocks in each, one in the inner hash over the data and one in the outer hash): in each of the six `let n_blocks·: u32 = n_blocks.wrapping_sub(1u32);` blocks the local binding `n_blocks·` (identifier ends in U+00B7 MIDDLE DOT) is renamed to `n_blocks_prev`, at its definition and at its two uses (`fst: ...` and the `wrapping_mul` operand). Eighteen lines in six hunks (three per block); no other token changes. No line is added, removed or moved.
+Why: Aeneas copies the Rust local name into the generated Lean, and U+00B7 is not allowed inside a Lean identifier, so the generated file fails to parse at three places (970:24, 1307:24 and 1651:24 in the failed-extraction scratch build). The rename is the only change needed for these three parse errors.
+Behaviour: pure alpha-renaming of a local `let` binding. Each binding is used only in the two statements of the same `if` arm that follow it; the new name `n_blocks_prev` does not occur anywhere else in the hmac crate (searched) and does not shadow or clash with `n_blocks`, `n_blocks0`, `rem`, `rem0`, `rem_len` or `scrut`. Types, values and evaluation order are untouched. Positions: the new name is four characters longer than the old one, so on these eighteen lines the columns of the tokens after the renamed name move by four; those tokens are `.wrapping_sub(..)` and `.wrapping_mul(..)` calls, the struct field list and punctuation, none of which can panic, so no panic location changes.
+Classification: A-mechanical
+Assumptions: none.
+Obligations: none.
+Independent: yes
+
+diff --git a/crates/algorithms/hmac/src/hacl/hmac.rs b/crates/algorithms/hmac/src/hacl/hmac.rs
+index 678f9c6..2911c05 100644
+--- a/crates/algorithms/hmac/src/hacl/hmac.rs
++++ b/crates/algorithms/hmac/src/hacl/hmac.rs
+@@ -61,10 +61,10 @@ pub fn compute_sha2_256(dst: &mut [u8], key: &[u8], key_len: u32, data: &[u8], d
+         let n_blocks: u32 = data_len.wrapping_div(block_len);
+         let rem: u32 = data_len.wrapping_rem(block_len);
+         let scrut: __uint32_t_uint32_t = if n_blocks > 0u32 && rem == 0u32 {
+-            let n_blocks·: u32 = n_blocks.wrapping_sub(1u32);
++            let n_blocks_prev: u32 = n_blocks.wrapping_sub(1u32);
+             __uint32_t_uint32_t {
+-                fst: n_blocks·,
+-                snd: data_len.wrapping_sub(n_blocks·.wrapping_mul(block_len)),
++                fst: n_blocks_prev,
++                snd: data_len.wrapping_sub(n_blocks_prev.wrapping_mul(block_len)),
+             }
+         } else {
+             __uint32_t_uint32_t {
+@@ -96,10 +96,10 @@ pub fn compute_sha2_256(dst: &mut [u8], key: &[u8], key_len: u32, data: &[u8], d
+     let n_blocks: u32 = 32u32.wrapping_div(block_len);
+     let rem: u32 = 32u32.wrapping_rem(block_len);
+     let scrut: __uint32_t_uint32_t = if n_blocks > 0u32 && rem == 0u32 {
+-        let n_blocks·: u32 = n_blocks.wrapping_sub(1u32);
++        let n_blocks_prev: u32 = n_blocks.wrapping_sub(1u32);
+         __uint32_t_uint32_t {
+-            fst: n_blocks·,
+-            snd: 32u32.wrapping_sub(n_blocks·.wrapping_mul(block_len)),
++            fst: n_blocks_prev,
++            snd: 32u32.wrapping_sub(n_blocks_prev.wrapping_mul(block_len)),
+         }
+     } else {
+         __uint32_t_uint32_t {
+@@ -178,10 +178,10 @@ pub fn compute_sha2_384(dst: &mut [u8], key: &[u8], key_len: u32, data: &[u8], d
+         let n_blocks: u32 = data_len.wrapping_div(block_len);
+         let rem: u32 = data_len.wrapping_rem(block_len);
+         let scrut: __uint32_t_uint32_t = if n_blocks > 0u32 && rem == 0u32 {
+-            let n_blocks·: u32 = n_blocks.wrapping_sub(1u32);
++            let n_blocks_prev: u32 = n_blocks.wrapping_sub(1u32);
+             __uint32_t_uint32_t {
+-                fst: n_blocks·,
+-                snd: data_len.wrapping_sub(n_blocks·.wrapping_mul(block_len)),
++                fst: n_blocks_prev,
++                snd: data_len.wrapping_sub(n_blocks_prev.wrapping_mul(block_len)),
+             }
+         } else {
+             __uint32_t_uint32_t {
+@@ -217,10 +217,10 @@ pub fn compute_sha2_384(dst: &mut [u8], key: &[u8], key_len: u32, data: &[u8], d
+     let n_blocks: u32 = 48u32.wrapping_div(block_len);
+     let rem: u32 = 48u32.wrapping_rem(block_len);
+     let scrut: __uint32_t_uint32_t = if n_blocks > 0u32 && rem == 0u32 {
+-        let n_blocks·: u32 = n_blocks.wrapping_sub(1u32);
++        let n_blocks_prev: u32 = n_blocks.wrapping_sub(1u32);
+         __uint32_t_uint32_t {
+-            fst: n_blocks·,
+-            snd: 48u32.wrapping_sub(n_blocks·.wrapping_mul(block_len)),
++            fst: n_blocks_prev,
++            snd: 48u32.wrapping_sub(n_blocks_prev.wrapping_mul(block_len)),
+         }
+     } else {
+         __uint32_t_uint32_t {
+@@ -303,10 +303,10 @@ pub fn compute_sha2_512(dst: &mut [u8], key: &[u8], key_len: u32, data: &[u8], d
+         let n_blocks: u32 = data_len.wrapping_div(block_len);
+         let rem: u32 = data_len.wrapping_rem(block_len);
+         let scrut: __uint32_t_uint32_t = if n_blocks > 0u32 && rem == 0u32 {
+-            let n_blocks·: u32 = n_blocks.wrapping_sub(1u32);
++            let n_blocks_prev: u32 = n_blocks.wrapping_sub(1u32);
+             __uint32_t_uint32_t {
+-                fst: n_blocks·,
+-                snd: data_len.wrapping_sub(n_blocks·.wrapping_mul(block_len)),
++                fst: n_blocks_prev,
++                snd: data_len.wrapping_sub(n_blocks_prev.wrapping_mul(block_len)),
+             }
+         } else {
+             __uint32_t_uint32_t {
+@@ -342,10 +342,10 @@ pub fn compute_sha2_512(dst: &mut [u8], key: &[u8], key_len: u32, data: &[u8], d
+     let n_blocks: u32 = 64u32.wrapping_div(block_len);
+     let rem: u32 = 64u32.wrapping_rem(block_len);
+     let scrut: __uint32_t_uint32_t = if n_blocks > 0u32 && rem == 0u32 {
+-        let n_blocks·: u32 = n_blocks.wrapping_sub(1u32);
++        let n_blocks_prev: u32 = n_blocks.wrapping_sub(1u32);
+         __uint32_t_uint32_t {
+-            fst: n_blocks·,
+-            snd: 64u32.wrapping_sub(n_blocks·.wrapping_mul(block_len)),
++            fst: n_blocks_prev,
++            snd: 64u32.wrapping_sub(n_blocks_prev.wrapping_mul(block_len)),
+         }
+     } else {
+         __uint32_t_uint32_t {

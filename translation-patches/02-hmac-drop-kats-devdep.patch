@@ -1,0 +1,18 @@
+Supporting patch: hmac drops the libcrux-kats dev-dependency
+Change: crates/algorithms/hmac/Cargo.toml: remove the dev-dependency on libcrux-kats (test vectors).
+Why: libcrux-kats is not in the trimmed input set, and cargo must be able to load its manifest even for a build that does not compile tests.
+Behaviour: no effect on the normal build or on any Rust source; only the test-only dependency edge is removed.
+Classification: A-mechanical
+Assumptions: none.
+Obligations: none.
+Independent: yes
+
+diff --git a/crates/algorithms/hmac/Cargo.toml b/crates/algorithms/hmac/Cargo.toml
+index b2e01835a..b1df3d714 100644
+--- a/crates/algorithms/hmac/Cargo.toml
++++ b/crates/algorithms/hmac/Cargo.toml
+@@ -23,4 +23,3 @@ libcrux-traits.workspace = true
+ libcrux-macros = { version = "=0.0.3", path = "../../utils/macros" }
+ 
+ [dev-dependencies]
+-libcrux-kats = { path = "../../testing/kats", features = ["hmac"] }
