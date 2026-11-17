@@ -76,6 +76,11 @@ recall new_spec {D S : Type} {OUTLEN : Usize} (BLOCK : Usize)
       (key.length ≤ U32.max → ∃ st, r = .Ok st ∧ StreamRep C st key.val []) ∧
       (U32.max < key.length → r = .Err .InvalidInputLength) ⦄
 
+/-- info: 'libcrux_hmac.incremental.HmacStream.Insts.Libcrux_hmacHmacState.new_spec' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ libcrux_traits.digest.UpdateError.Insts.CoreFmtDebug.fmt] -/
+#guard_msgs in
 #print axioms new_spec
 /- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`, and
    `libcrux_traits.digest.UpdateError.Insts.CoreFmtDebug.fmt` (an extraction
@@ -87,6 +92,17 @@ recall new_sha256_spec (key : Slice U8) :
         ∃ st, r = .Ok st ∧ StreamRep Trusted.sha256Contract st key.val []) ∧
       (U32.max < key.length → r = .Err .InvalidInputLength) ⦄
 
+/-- info: 'libcrux_hmac.incremental.HmacStream.Insts.Libcrux_hmacHmacState.new_sha256_spec' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Trusted.sha256Contract,
+ libcrux_sha2.impl_hacl.Sha256,
+ libcrux_sha2.impl_digest_trait.Sha256Hash.Insts.Libcrux_traitsDigestArrayrefDigestIncrementalSha25632.finish,
+ libcrux_sha2.impl_digest_trait.Sha256Hash.Insts.Libcrux_traitsDigestDigestIncrementalBaseSha256.reset,
+ libcrux_sha2.impl_digest_trait.Sha256Hash.Insts.Libcrux_traitsDigestDigestIncrementalBaseSha256.update,
+ libcrux_sha2.impl_hacl.Sha256.Insts.Libcrux_traitsDigestInitializeDigestState.new,
+ libcrux_traits.digest.UpdateError.Insts.CoreFmtDebug.fmt] -/
+#guard_msgs in
 #print axioms new_sha256_spec
 /- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`;
    Trusted (A2): `Trusted.sha256Contract`; extraction axioms (A2, types only):
@@ -100,6 +116,17 @@ recall new_sha384_spec (key : Slice U8) :
         ∃ st, r = .Ok st ∧ StreamRep Trusted.sha384Contract st key.val []) ∧
       (U32.max < key.length → r = .Err .InvalidInputLength) ⦄
 
+/-- info: 'libcrux_hmac.incremental.HmacStream.Insts.Libcrux_hmacHmacState.new_sha384_spec' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Trusted.sha384Contract,
+ libcrux_sha2.impl_hacl.Sha384,
+ libcrux_sha2.impl_digest_trait.Sha384Hash.Insts.Libcrux_traitsDigestArrayrefDigestIncrementalSha38448.finish,
+ libcrux_sha2.impl_digest_trait.Sha384Hash.Insts.Libcrux_traitsDigestDigestIncrementalBaseSha384.reset,
+ libcrux_sha2.impl_digest_trait.Sha384Hash.Insts.Libcrux_traitsDigestDigestIncrementalBaseSha384.update,
+ libcrux_sha2.impl_hacl.Sha384.Insts.Libcrux_traitsDigestInitializeDigestState.new,
+ libcrux_traits.digest.UpdateError.Insts.CoreFmtDebug.fmt] -/
+#guard_msgs in
 #print axioms new_sha384_spec
 /- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`;
    Trusted (A2): `Trusted.sha384Contract`; extraction axioms (A2, types only):
@@ -113,6 +140,17 @@ recall new_sha512_spec (key : Slice U8) :
         ∃ st, r = .Ok st ∧ StreamRep Trusted.sha512Contract st key.val []) ∧
       (U32.max < key.length → r = .Err .InvalidInputLength) ⦄
 
+/-- info: 'libcrux_hmac.incremental.HmacStream.Insts.Libcrux_hmacHmacState.new_sha512_spec' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Trusted.sha512Contract,
+ libcrux_sha2.impl_hacl.Sha512,
+ libcrux_sha2.impl_digest_trait.Sha512Hash.Insts.Libcrux_traitsDigestArrayrefDigestIncrementalSha51264.finish,
+ libcrux_sha2.impl_digest_trait.Sha512Hash.Insts.Libcrux_traitsDigestDigestIncrementalBaseSha512.reset,
+ libcrux_sha2.impl_digest_trait.Sha512Hash.Insts.Libcrux_traitsDigestDigestIncrementalBaseSha512.update,
+ libcrux_sha2.impl_hacl.Sha512.Insts.Libcrux_traitsDigestInitializeDigestState.new,
+ libcrux_traits.digest.UpdateError.Insts.CoreFmtDebug.fmt] -/
+#guard_msgs in
 #print axioms new_sha512_spec
 /- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`;
    Trusted (A2): `Trusted.sha512Contract`; extraction axioms (A2, types only):
