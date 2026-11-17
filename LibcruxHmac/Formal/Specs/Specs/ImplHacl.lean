@@ -73,7 +73,28 @@ recall hmac_sha2_256_spec_of_gaps
     (hkey : key.length ≤ U32.max) (hdata : data.length ≤ U32.max) :
     hmac_sha2_256 dst key data ⦃ tag => tag.val = Spec.hmacSha256 key.val data.val ⦄
 
-#print axioms hmac_sha2_256_spec_of_gaps
+/-- info: 'libcrux_hmac.impl_hacl.hmac_sha2_256_spec_of_gaps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Trusted.h256_spec,
+ Trusted.hash_256_spec,
+ Trusted.ignore_spec,
+ Trusted.sha256_finish_spec,
+ Trusted.sha256_init_spec,
+ Trusted.sha256_update_last_spec,
+ Trusted.sha256_update_nblocks_spec,
+ libcrux_sha2.hacl.h256,
+ libcrux_sha2.hacl.hash_256,
+ libcrux_sha2.hacl.sha256_finish,
+ libcrux_sha2.hacl.sha256_init,
+ libcrux_sha2.hacl.sha256_update_last,
+ libcrux_sha2.hacl.sha256_update_nblocks,
+ alloc.vec.Vec.into_boxed_slice,
+ core.num.U32.wrapping_div,
+ core.num.U32.wrapping_rem,
+ libcrux_hacl_rs.lowstar.ignore.ignore,
+ core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
+#guard_msgs in #print axioms hmac_sha2_256_spec_of_gaps
 /- Axiom guard (pending; conditional form):
    * Lean: `propext`, `Classical.choice`, `Quot.sound`.
    * Extraction axioms reached through `hmac_sha2_256` (boundary A2, types only):
@@ -94,7 +115,21 @@ recall hmac_sha2_256_panic (dst : Array U8 32#usize) (key data : Slice U8)
     (h : U32.max < key.length ∨ U32.max < data.length) :
     hmac_sha2_256 dst key data = fail .panic
 
-#print axioms hmac_sha2_256_panic
+/-- info: 'libcrux_hmac.impl_hacl.hmac_sha2_256_panic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ libcrux_sha2.hacl.h256,
+ libcrux_sha2.hacl.hash_256,
+ libcrux_sha2.hacl.sha256_finish,
+ libcrux_sha2.hacl.sha256_init,
+ libcrux_sha2.hacl.sha256_update_last,
+ libcrux_sha2.hacl.sha256_update_nblocks,
+ alloc.vec.Vec.into_boxed_slice,
+ core.num.U32.wrapping_div,
+ core.num.U32.wrapping_rem,
+ libcrux_hacl_rs.lowstar.ignore.ignore,
+ core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
+#guard_msgs in #print axioms hmac_sha2_256_panic
 /- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`, and the
    extraction axioms reached through `hmac_sha2_256` (as for `hmac_sha2_256_spec`).
    No Trusted axiom and no gap hypothesis. -/
