@@ -13,7 +13,13 @@ They are evaluated when this file is built; they add no declarations and no axio
   SHA-256 `tcId` 169 has a 65-byte key, longer than the block, so it checks the
   hash-the-key branch of `keyBlock`.
 * RFC 4231 §4.7 (test case 6, a 131-byte key) checks that branch for all three
-  hashes. These vectors are not in the repository; they are copied from the RFC.
+  hashes. These are the published RFC values. They are not in the repository, so
+  only the RFC itself can confirm them.
+* Output lengths: each hash and each HMAC has its nominal length, and
+  `tagLength alg` is the length of `hmacOf alg`.
+* The split form used by HACL: whole blocks first (`update_nblocks`), then the
+  final chunk padded for the total length (`update_last`), as in
+  `compute_sha2_*` and `hash_*`, gives the same result as the hash of the whole.
 -/
 
 open Aeneas Aeneas.Std
@@ -252,5 +258,46 @@ def rfc4231Data : List Byte :=
 #guard hmacSha512 rfc4231Key rfc4231Data =
   hex ("80b24263c7c1a3ebb71493c1dd7be8b49b46d1f41b4aeec1121b013783f8f3526b56d037" ++
       "e05f2598bd0fd2215d6a1e5295e64f73f63f0aec8b915a985d786598")
+
+/-! ## Output lengths -/
+
+#guard (sha256 []).length = 32 && (sha384 []).length = 48 && (sha512 []).length = 64
+#guard (hmacOf .Sha256 [] []).length = tagLength .Sha256
+#guard (hmacOf .Sha384 [] []).length = tagLength .Sha384
+#guard (hmacOf .Sha512 [] []).length = tagLength .Sha512
+#guard (hmacOf .Sha256 rfc4231Key rfc4231Data).length = tagLength .Sha256
+
+/-! ## The split form used by HACL (`update_nblocks`, then `update_last`) -/
+
+/-- The hash of `m` computed in the HACL shape: the first `k` whole blocks with
+`compressBlocks` (`update_nblocks`), then the rest of `m` with `padTail` for the
+total length `m.length` (`update_last`). -/
+def splitHash (p : Sha2Core) (IV : List (BitVec p.w)) (outLen k : Nat) (m : List Byte) :
+    List Byte :=
+  let H := p.compressBlocks IV (m.take (k * p.blockLen))
+  (p.serialize (p.compressBlocks H (p.padTail m.length (m.drop (k * p.blockLen))))).take outLen
+
+/-- The bytes `0, 1, …, n - 1` (mod 256). -/
+def bytesUpTo (n : Nat) : List Byte := (List.range n).map byte
+
+-- A final chunk of exactly one block: empty data (the `ipad` block alone), and
+-- data whose length is a multiple of the block.
+#guard splitHash sha256Core sha256IV 32 0 (bytesUpTo 64) = sha256 (bytesUpTo 64)
+#guard splitHash sha256Core sha256IV 32 1 (bytesUpTo 128) = sha256 (bytesUpTo 128)
+#guard splitHash sha512Core sha384IV 48 0 (bytesUpTo 128) = sha384 (bytesUpTo 128)
+#guard splitHash sha512Core sha384IV 48 1 (bytesUpTo 256) = sha384 (bytesUpTo 256)
+#guard splitHash sha512Core sha512IV 64 0 (bytesUpTo 128) = sha512 (bytesUpTo 128)
+#guard splitHash sha512Core sha512IV 64 1 (bytesUpTo 256) = sha512 (bytesUpTo 256)
+-- A partial final chunk after one block (the total length differs from the chunk's).
+#guard splitHash sha256Core sha256IV 32 1 (bytesUpTo 100) = sha256 (bytesUpTo 100)
+#guard splitHash sha512Core sha384IV 48 1 (bytesUpTo 200) = sha384 (bytesUpTo 200)
+#guard splitHash sha512Core sha512IV 64 1 (bytesUpTo 200) = sha512 (bytesUpTo 200)
+-- The outer hash: the `opad` block, then the inner digest as the final chunk.
+#guard splitHash sha256Core sha256IV 32 1 (bytesUpTo 96) = sha256 (bytesUpTo 96)
+#guard splitHash sha512Core sha384IV 48 1 (bytesUpTo 176) = sha384 (bytesUpTo 176)
+#guard splitHash sha512Core sha512IV 64 1 (bytesUpTo 192) = sha512 (bytesUpTo 192)
+-- Several whole blocks before a partial chunk.
+#guard splitHash sha256Core sha256IV 32 3 (bytesUpTo 230) = sha256 (bytesUpTo 230)
+#guard splitHash sha512Core sha512IV 64 2 (bytesUpTo 300) = sha512 (bytesUpTo 300)
 
 end libcrux_hmac.Spec.Kat
