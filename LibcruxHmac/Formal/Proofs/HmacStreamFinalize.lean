@@ -1,4 +1,6 @@
 import LibcruxHmac.Formal.Trusted.Sha2Stream
+import LibcruxHmac.Formal.Proofs.Lemmas.StreamRep
+import LibcruxHmac.Formal.Proofs.Lemmas.StreamNew
 
 /-!
 # `<libcrux_hmac::incremental::HmacStream as HmacState>::finalize`
@@ -54,7 +56,38 @@ theorem finalize_spec {D S : Type} {OUTLEN BLOCK : Usize}
     (st : incremental.HmacStream D S OUTLEN BLOCK) (key msg : List U8)
     (dst : Array U8 OUTLEN) (hrep : StreamRep C st key msg) :
     finalize inst init st dst ⦃ tag => tag.val = Spec.hmac H BLOCK.val key msg ⦄ := by
-  sorry
+  obtain ⟨hop, hin⟩ := hrep
+  have h33 := u32_max_add_le
+  unfold finalize
+  refine spec_bind (C.finish st.inner _ (Array.repeat OUTLEN 0#u8) hin) ?_
+  intro ih hih
+  refine spec_bind C.new ?_
+  intro outer hout
+  simp only [lift, bind_ok]
+  have hts : st.opad.to_slice.length = BLOCK.val := by simp [Array.to_slice, Slice.length]
+  have hts2 : ih.to_slice.length = OUTLEN.val := by simp [Array.to_slice, Slice.length]
+  refine spec_bind (C.update_ok outer [] st.opad.to_slice hout ?_ ?_) ?_
+  · rw [hts]; exact hB
+  · simp only [List.length_nil, zero_add, hts]
+    omega
+  · rintro ⟨r, outer1⟩ ⟨hr, hout1⟩
+    subst hr
+    step*
+    simp only [expect_ok, bind_ok]
+    have hts' : st.opad.to_slice.val.length = BLOCK.val := by simp
+    refine spec_bind (C.update_ok outer1 _ ih.to_slice hout1 ?_ ?_) ?_
+    · rw [hts2]; omega
+    · simp only [List.length_append, List.length_nil, zero_add, hts']
+      rw [hts2]
+      omega
+    · rintro ⟨r1, outer2⟩ ⟨hr1, hout2⟩
+      subst hr1
+      step*
+      simp only [expect_ok, bind_ok]
+      refine spec_mono (C.finish outer2 _ dst hout2) ?_
+      intro tag htag
+      rw [htag]
+      simp [Spec.hmac, Array.to_slice, hih, hop]
 
 /-- C3, `finalize` at `HmacSha256`. -/
 @[step]
