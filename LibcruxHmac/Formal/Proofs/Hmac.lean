@@ -1,6 +1,7 @@
 import LibcruxHmac.Formal.Proofs.HmacSha2_256
 import LibcruxHmac.Formal.Proofs.HmacSha2_384
 import LibcruxHmac.Formal.Proofs.HmacSha2_512
+import LibcruxHmac.Formal.Proofs.TagSize
 
 /-!
 # `libcrux_hmac::hmac` (crates/algorithms/hmac/src/hmac.rs lines 72–89)
@@ -76,12 +77,70 @@ theorem hmac_spec_of_gaps
     hmac alg key data tag_length ⦃ v =>
       v.val = (Spec.hmacOf alg key.val data.val).take
         ((tag_length.map (·.val)).getD (Spec.tagLength alg)) ⦄ := by
-  sorry
+  have htr : ∀ (v : alloc.vec.Vec U8) (n : Usize),
+      alloc.vec.Vec.truncate alloc.alloc.Global v n ⦃ v' => v'.val = v.val.take n.val ⦄ := htrunc
+  cases alg
+  · have hH : ∀ dst : Array U8 32#usize, impl_hacl.hmac_sha2_256 dst key data
+        ⦃ tag => tag.val = Spec.hmacSha256 key.val data.val ⦄ :=
+      fun dst => impl_hacl.hmac_sha2_256_spec_of_gaps hdiv hrem hbox dst key data hkey hdata
+    unfold hmac
+    step as ⟨native, hnat⟩
+    cases tag_length
+    all_goals simp only [bind_ok]
+    all_goals
+      step with hH as ⟨buf1, hbuf1⟩
+      step as ⟨s, hs⟩
+      step as ⟨dst, hdst⟩
+      step with htr as ⟨v', hv'⟩
+      have hd : dst.val = Spec.hmacSha256 key.val data.val := by
+        show dst.slice.val = _
+        rw [← hdst, hs]
+        simpa [Array.to_slice] using hbuf1
+      rw [hv', hd]
+      simp [Spec.hmacOf, hnat]
+  · have hH : ∀ dst : Array U8 48#usize, impl_hacl.hmac_sha2_384 dst key data
+        ⦃ tag => tag.val = Spec.hmacSha384 key.val data.val ⦄ :=
+      fun dst => impl_hacl.hmac_sha2_384_spec_of_gaps hdiv hrem hbox dst key data hkey hdata
+    unfold hmac
+    step as ⟨native, hnat⟩
+    cases tag_length
+    all_goals simp only [bind_ok]
+    all_goals
+      step with hH as ⟨buf1, hbuf1⟩
+      step as ⟨s, hs⟩
+      step as ⟨dst, hdst⟩
+      step with htr as ⟨v', hv'⟩
+      have hd : dst.val = Spec.hmacSha384 key.val data.val := by
+        show dst.slice.val = _
+        rw [← hdst, hs]
+        simpa [Array.to_slice] using hbuf1
+      rw [hv', hd]
+      simp [Spec.hmacOf, hnat]
+  · have hH : ∀ dst : Array U8 64#usize, impl_hacl.hmac_sha2_512 dst key data
+        ⦃ tag => tag.val = Spec.hmacSha512 key.val data.val ⦄ :=
+      fun dst => impl_hacl.hmac_sha2_512_spec_of_gaps hdiv hrem hbox dst key data hkey hdata
+    unfold hmac
+    step as ⟨native, hnat⟩
+    cases tag_length
+    all_goals simp only [bind_ok]
+    all_goals
+      step with hH as ⟨buf1, hbuf1⟩
+      step as ⟨s, hs⟩
+      step as ⟨dst, hdst⟩
+      step with htr as ⟨v', hv'⟩
+      have hd : dst.val = Spec.hmacSha512 key.val data.val := by
+        show dst.slice.val = _
+        rw [← hdst, hs]
+        simpa [Array.to_slice] using hbuf1
+      rw [hv', hd]
+      simp [Spec.hmacOf, hnat]
 
 /-- C4, failure: with `2 ^ 32` or more bytes of key or data, `hmac` panics. -/
 theorem hmac_panic (alg : Algorithm) (key data : Slice U8) (tag_length : Option Usize)
     (h : U32.max < key.length ∨ U32.max < data.length) :
     hmac alg key data tag_length = fail .panic := by
-  sorry
+  cases alg <;> cases tag_length <;>
+    simp [hmac, tag_size, impl_hacl.hmac_sha2_256_panic, impl_hacl.hmac_sha2_384_panic,
+      impl_hacl.hmac_sha2_512_panic, h]
 
 end libcrux_hmac
