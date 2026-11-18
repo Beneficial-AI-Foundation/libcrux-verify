@@ -51,7 +51,7 @@ recall tag_size_spec (alg : Algorithm) :
 
 /-- info: 'libcrux_hmac.tag_size_spec' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms tag_size_spec
-/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`.
+/- Axiom guard: `propext`, `Classical.choice`, `Quot.sound`.
    No Trusted axiom, no extraction axiom. -/
 
 /-! ## `libcrux_hmac::hmac` (C4) -/
@@ -251,7 +251,7 @@ recall hmac_panic (alg : Algorithm) (key data : Slice U8) (tag_length : Option U
  libcrux_hacl_rs.lowstar.ignore.ignore,
  core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in #print axioms hmac_panic
-/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`, and the
+/- Axiom guard: `propext`, `Classical.choice`, `Quot.sound`, and the
    extraction axioms reached through `hmac` (as for `hmac_spec`). No Trusted
    axiom and no gap hypothesis: the `unwrap` fails before any of them is called. -/
 

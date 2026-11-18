@@ -157,7 +157,7 @@ recall hmac_sha2_256_panic (dst : Array U8 32#usize) (key data : Slice U8)
  libcrux_hacl_rs.lowstar.ignore.ignore,
  core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in #print axioms hmac_sha2_256_panic
-/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`, and the
+/- Axiom guard: `propext`, `Classical.choice`, `Quot.sound`, and the
    extraction axioms reached through `hmac_sha2_256` (as for `hmac_sha2_256_spec`).
    No Trusted axiom and no gap hypothesis. -/
 
@@ -289,7 +289,7 @@ recall hmac_sha2_384_panic (dst : Array U8 48#usize) (key data : Slice U8)
  libcrux_hacl_rs.lowstar.ignore.ignore,
  core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in #print axioms hmac_sha2_384_panic
-/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`, and the
+/- Axiom guard: `propext`, `Classical.choice`, `Quot.sound`, and the
    extraction axioms reached through `hmac_sha2_384` (as for `hmac_sha2_384_spec`).
    No Trusted axiom and no gap hypothesis. -/
 
@@ -421,7 +421,7 @@ recall hmac_sha2_512_panic (dst : Array U8 64#usize) (key data : Slice U8)
  libcrux_hacl_rs.lowstar.ignore.ignore,
  core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in #print axioms hmac_sha2_512_panic
-/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`, and the
+/- Axiom guard: `propext`, `Classical.choice`, `Quot.sound`, and the
    extraction axioms reached through `hmac_sha2_512` (as for `hmac_sha2_512_spec`).
    No Trusted axiom and no gap hypothesis. -/
 
