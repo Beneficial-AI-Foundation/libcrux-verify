@@ -1,6 +1,7 @@
 import LibcruxHmac.Formal.Specs.Defs.Gaps
 import LibcruxHmac.Formal.Specs.Defs.Hmac
 import LibcruxHmac.Formal.Trusted.Sha2Hacl
+import LibcruxHmac.Formal.Proofs.Lemmas.ComputeSha2_512
 
 /-!
 # `libcrux_hmac::hmac_sha2_512` (crates/algorithms/hmac/src/impl_hacl.rs line 22)
@@ -68,12 +69,37 @@ theorem hmac_sha2_512_spec_of_gaps
     (dst : Array U8 64#usize) (key data : Slice U8)
     (hkey : key.length ≤ U32.max) (hdata : data.length ≤ U32.max) :
     hmac_sha2_512 dst key data ⦃ tag => tag.val = Spec.hmacSha512 key.val data.val ⦄ := by
-  sorry
+  have hk : key.val.length ≤ U32.max := hkey
+  have hd : data.val.length ≤ U32.max := hdata
+  simp [hmac_sha2_512, core.convert.num.ptr_try_from_impls.TryFromU32Usize.try_from,
+    core.num.tryFromUScalar, core.result.Result.unwrap, Slice.len, lift, hk, hd]
+  simp only [Array.to_slice_mut]
+  refine spec_bind (hacl.hmac.compute_sha2_512_spec_of_gaps hdiv hrem hbox _ key data _ _
+    ?_ ?_ ?_) ?_
+  · simp [Array.to_slice]
+  · simp [Usize.ofNatCore]
+    scalar_tac
+  · simp [Usize.ofNatCore]
+    scalar_tac
+  · intro y hy
+    rw [spec_ok]
+    have hlen : y.val.length = (64#usize).val := by
+      rw [hy]
+      exact Spec.sha512_length _
+    rw [Array.from_slice_val _ _ hlen, hy]
 
 /-- C1, failure: with `2 ^ 32` or more bytes of key or data, `hmac_sha2_512` panics. -/
 theorem hmac_sha2_512_panic (dst : Array U8 64#usize) (key data : Slice U8)
     (h : U32.max < key.length ∨ U32.max < data.length) :
     hmac_sha2_512 dst key data = fail .panic := by
-  sorry
+  simp only [Slice.length] at h
+  by_cases hkey : key.val.length ≤ U32.max
+  · have hdata : ¬ data.val.length ≤ U32.max := by omega
+    simp [hmac_sha2_512, core.convert.num.ptr_try_from_impls.TryFromU32Usize.try_from,
+      core.num.tryFromUScalar, core.result.Result.unwrap, Slice.len, lift, hkey, hdata]
+    rfl
+  · simp [hmac_sha2_512, core.convert.num.ptr_try_from_impls.TryFromU32Usize.try_from,
+      core.num.tryFromUScalar, core.result.Result.unwrap, Slice.len, lift, hkey]
+    rfl
 
 end libcrux_hmac.impl_hacl

@@ -168,7 +168,32 @@ recall hmac_sha2_384_spec_of_gaps
     (hkey : key.length ≤ U32.max) (hdata : data.length ≤ U32.max) :
     hmac_sha2_384 dst key data ⦃ tag => tag.val = Spec.hmacSha384 key.val data.val ⦄
 
-#print axioms hmac_sha2_384_spec_of_gaps
+/-- info: 'libcrux_hmac.impl_hacl.hmac_sha2_384_spec_of_gaps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Trusted.h384_spec,
+ Trusted.hash_384_spec,
+ Trusted.ignore_spec,
+ Trusted.sha384_finish_spec,
+ Trusted.sha384_init_spec,
+ Trusted.sha384_update_last_spec,
+ Trusted.sha384_update_nblocks_spec,
+ Trusted.uint128_add_spec,
+ Trusted.uint64_to_uint128_spec,
+ libcrux_sha2.hacl.h384,
+ libcrux_sha2.hacl.hash_384,
+ libcrux_sha2.hacl.sha384_finish,
+ libcrux_sha2.hacl.sha384_init,
+ libcrux_sha2.hacl.sha384_update_last,
+ libcrux_sha2.hacl.sha384_update_nblocks,
+ alloc.vec.Vec.into_boxed_slice,
+ core.num.U32.wrapping_div,
+ core.num.U32.wrapping_rem,
+ libcrux_hacl_rs.fstar.uint128.add,
+ libcrux_hacl_rs.fstar.uint128.uint64_to_uint128,
+ libcrux_hacl_rs.lowstar.ignore.ignore,
+ core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
+#guard_msgs in #print axioms hmac_sha2_384_spec_of_gaps
 /- Axiom guard (pending; conditional form):
    * Lean: `propext`, `Classical.choice`, `Quot.sound`.
    * Extraction axioms reached through `hmac_sha2_384` (boundary A2, types only):
@@ -191,7 +216,23 @@ recall hmac_sha2_384_panic (dst : Array U8 48#usize) (key data : Slice U8)
     (h : U32.max < key.length ∨ U32.max < data.length) :
     hmac_sha2_384 dst key data = fail .panic
 
-#print axioms hmac_sha2_384_panic
+/-- info: 'libcrux_hmac.impl_hacl.hmac_sha2_384_panic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ libcrux_sha2.hacl.h384,
+ libcrux_sha2.hacl.hash_384,
+ libcrux_sha2.hacl.sha384_finish,
+ libcrux_sha2.hacl.sha384_init,
+ libcrux_sha2.hacl.sha384_update_last,
+ libcrux_sha2.hacl.sha384_update_nblocks,
+ alloc.vec.Vec.into_boxed_slice,
+ core.num.U32.wrapping_div,
+ core.num.U32.wrapping_rem,
+ libcrux_hacl_rs.fstar.uint128.add,
+ libcrux_hacl_rs.fstar.uint128.uint64_to_uint128,
+ libcrux_hacl_rs.lowstar.ignore.ignore,
+ core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
+#guard_msgs in #print axioms hmac_sha2_384_panic
 /- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`, and the
    extraction axioms reached through `hmac_sha2_384` (as for `hmac_sha2_384_spec`).
    No Trusted axiom and no gap hypothesis. -/
@@ -230,7 +271,32 @@ recall hmac_sha2_512_spec_of_gaps
     (hkey : key.length ≤ U32.max) (hdata : data.length ≤ U32.max) :
     hmac_sha2_512 dst key data ⦃ tag => tag.val = Spec.hmacSha512 key.val data.val ⦄
 
-#print axioms hmac_sha2_512_spec_of_gaps
+/-- info: 'libcrux_hmac.impl_hacl.hmac_sha2_512_spec_of_gaps' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ Trusted.h512_spec,
+ Trusted.hash_512_spec,
+ Trusted.ignore_spec,
+ Trusted.sha512_finish_spec,
+ Trusted.sha512_init_spec,
+ Trusted.sha512_update_last_spec,
+ Trusted.sha512_update_nblocks_spec,
+ Trusted.uint128_add_spec,
+ Trusted.uint64_to_uint128_spec,
+ libcrux_sha2.hacl.h512,
+ libcrux_sha2.hacl.hash_512,
+ libcrux_sha2.hacl.sha512_finish,
+ libcrux_sha2.hacl.sha512_init,
+ libcrux_sha2.hacl.sha512_update_last,
+ libcrux_sha2.hacl.sha512_update_nblocks,
+ alloc.vec.Vec.into_boxed_slice,
+ core.num.U32.wrapping_div,
+ core.num.U32.wrapping_rem,
+ libcrux_hacl_rs.fstar.uint128.add,
+ libcrux_hacl_rs.fstar.uint128.uint64_to_uint128,
+ libcrux_hacl_rs.lowstar.ignore.ignore,
+ core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
+#guard_msgs in #print axioms hmac_sha2_512_spec_of_gaps
 /- Axiom guard (pending; conditional form):
    * Lean: `propext`, `Classical.choice`, `Quot.sound`.
    * Extraction axioms reached through `hmac_sha2_512` (boundary A2, types only):
@@ -253,7 +319,23 @@ recall hmac_sha2_512_panic (dst : Array U8 64#usize) (key data : Slice U8)
     (h : U32.max < key.length ∨ U32.max < data.length) :
     hmac_sha2_512 dst key data = fail .panic
 
-#print axioms hmac_sha2_512_panic
+/-- info: 'libcrux_hmac.impl_hacl.hmac_sha2_512_panic' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound,
+ libcrux_sha2.hacl.h512,
+ libcrux_sha2.hacl.hash_512,
+ libcrux_sha2.hacl.sha512_finish,
+ libcrux_sha2.hacl.sha512_init,
+ libcrux_sha2.hacl.sha512_update_last,
+ libcrux_sha2.hacl.sha512_update_nblocks,
+ alloc.vec.Vec.into_boxed_slice,
+ core.num.U32.wrapping_div,
+ core.num.U32.wrapping_rem,
+ libcrux_hacl_rs.fstar.uint128.add,
+ libcrux_hacl_rs.fstar.uint128.uint64_to_uint128,
+ libcrux_hacl_rs.lowstar.ignore.ignore,
+ core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
+#guard_msgs in #print axioms hmac_sha2_512_panic
 /- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`, and the
    extraction axioms reached through `hmac_sha2_512` (as for `hmac_sha2_512_spec`).
    No Trusted axiom and no gap hypothesis. -/
