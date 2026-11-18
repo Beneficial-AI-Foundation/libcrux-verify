@@ -24,6 +24,6 @@ namespace libcrux_hmac
 @[step]
 theorem tag_size_spec (alg : Algorithm) :
     tag_size alg ⦃ n => n.val = Spec.tagLength alg ⦄ := by
-  sorry
+  cases alg <;> simp [tag_size, Spec.tagLength]
 
 end libcrux_hmac

@@ -1,4 +1,5 @@
 import LibcruxHmac.Formal.Trusted.Sha2Stream
+import LibcruxHmac.Formal.Proofs.Lemmas.StreamNew
 
 /-!
 # `<libcrux_hmac::incremental::HmacStream as HmacState>::new`
@@ -55,7 +56,68 @@ theorem new_spec {D S : Type} {OUTLEN : Usize} (BLOCK : Usize)
     new BLOCK inst init key ⦃ r =>
       (key.length ≤ U32.max → ∃ st, r = .Ok st ∧ StreamRep C st key.val []) ∧
       (U32.max < key.length → r = .Err .InvalidInputLength) ⦄ := by
-  sorry
+  unfold new
+  step*
+  · have hi : i.val = U32.max := by rw [i_post]; exact cast_u32_max_val
+    scalar_tac
+  · have hi2 : i2.val = U32.max := by rw [i2_post]; exact cast_u32_max_val
+    refine ⟨fun h => ?_, fun _ => trivial⟩
+    exfalso
+    scalar_tac
+  · have hi2 : i2.val = U32.max := by rw [i2_post]; exact cast_u32_max_val
+    refine spec_bind (Pₘ := fun kb => kb.val = Spec.keyBlock H BLOCK.val key.val) ?_ ?_
+    · split
+      · rename_i hle
+        step*
+        have hlen : key.val.length ≤ BLOCK.val := by scalar_tac
+        subst s1_post
+        rw [s_post2, Array.repeat_val, setSlice_replicate_zero _ _ hlen]
+        simp [Spec.keyBlock, hlen, Spec.byte_zero]
+      · refine spec_bind C.new ?_
+        intro tmp htmp
+        have hkl : key.length ≤ U32.max := by scalar_tac
+        have h33 := u32_max_add_le
+        refine spec_bind (C.update_ok tmp [] key htmp hkl ?_) ?_
+        · simp only [List.length_nil, zero_add]
+          omega
+        · rintro ⟨r, tmp1⟩ ⟨hr, htmp1⟩
+          subst hr
+          step*
+          simp only [expect_ok, bind_ok]
+          refine spec_bind (C.finish tmp1 _ (Array.repeat OUTLEN 0#u8) htmp1) ?_
+          intro hashed1 hh
+          step*
+          have hlenH : (H key.val).length = OUTLEN.val := by
+            have := hashed1.property
+            rw [hh] at this
+            simpa using this
+          have hgt : ¬ key.val.length ≤ BLOCK.val := by scalar_tac
+          subst s2_post s1_post
+          have hv : hashed1.to_slice.val = H key.val := by simp [Array.to_slice, hh]
+          rw [s_post2, Array.repeat_val, hv, setSlice_replicate_zero _ _ (by omega)]
+          simp [Spec.keyBlock, hgt, hlenH, Spec.byte_zero]
+    · intro kb hkb
+      step with new_loop_spec kb (Array.repeat BLOCK 0#u8) (Array.repeat BLOCK 0#u8)
+        as ⟨ipad, opad, hip, hop⟩
+      refine spec_bind C.new ?_
+      intro inner hinner
+      simp only [lift, bind_ok]
+      have hts : ipad.to_slice.length = BLOCK.val := by simp [Array.to_slice, Slice.length]
+      have hkl : key.length ≤ U32.max := by scalar_tac
+      refine spec_bind (C.update_ok inner [] ipad.to_slice hinner ?_ ?_) ?_
+      · rw [hts]; exact hB
+      · have := u32_max_add_le
+        simp only [List.length_nil, zero_add, hts]
+        omega
+      · rintro ⟨r, inner1⟩ ⟨hr, hinner1⟩
+        subst hr
+        simp only [core.result.Result.expect]
+        simp
+        refine ⟨fun _ => ?_, hkl⟩
+        unfold Spec.StreamRep
+        refine ⟨?_, ?_⟩
+        · simp [Spec.outerKeyBlock, ← hkb, hop, opadByte_eq]
+        · simpa [Spec.innerKeyBlock, ← hkb, hip, ipadByte_eq, Array.to_slice] using hinner1
 
 /-- C3, `new` at `HmacSha256`. -/
 @[step]
