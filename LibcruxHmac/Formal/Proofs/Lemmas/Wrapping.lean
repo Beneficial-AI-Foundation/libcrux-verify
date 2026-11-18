@@ -34,8 +34,6 @@ theorem wrapping_sub_val {ty : UScalarTy} (a b : UScalar ty) (h : b.val ≤ a.va
 
 theorem cast_u32_u64 (a : U32) : (UScalar.cast .U64 a).val = a.val := by scalar_tac
 
-theorem cast_u32_u128 (a : U32) : (UScalar.cast .U128 a).val = a.val := by scalar_tac
-
 theorem w32_sub (a b : U32) (h : b.val ≤ a.val) :
     (core.num.U32.wrapping_sub a b).val = a.val - b.val := wrapping_sub_val a b h
 
@@ -45,10 +43,6 @@ theorem w32_mul (a b : U32) (h : a.val * b.val < 4294967296) :
 
 theorem w64_add (a b : U64) (h : a.val + b.val < 18446744073709551616) :
     (core.num.U64.wrapping_add a b).val = a.val + b.val :=
-  wrapping_add_val a b (by simpa using h)
-
-theorem w128_add (a b : U128) (h : a.val + b.val < 340282366920938463463374607431768211456) :
-    (core.num.U128.wrapping_add a b).val = a.val + b.val :=
   wrapping_add_val a b (by simpa using h)
 
 end libcrux_hmac.Lemmas

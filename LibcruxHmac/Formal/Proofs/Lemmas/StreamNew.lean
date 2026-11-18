@@ -1,5 +1,6 @@
 import LibcruxHmac.Extraction.LibcruxHmac
 import LibcruxHmac.Formal.Specs.Defs.Hmac
+import LibcruxHmac.Formal.Proofs.Lemmas.HmacPure
 
 /-!
 # Helper lemmas for `HmacStream::new` (streaming path, claim C3)
@@ -78,8 +79,6 @@ open libcrux_hmac.Spec
 theorem setSlice_replicate_zero (k : List U8) (B : Nat) (h : k.length ≤ B) :
     (List.replicate B 0#u8).setSlice! 0 k = k ++ List.replicate (B - k.length) 0#u8 := by
   simp [List.setSlice!, List.drop_replicate, h]
-
-theorem byte_zero : byte 0 = 0#u8 := by decide
 
 theorem ipadByte_eq : ipadByte = 54#u8 := by decide
 

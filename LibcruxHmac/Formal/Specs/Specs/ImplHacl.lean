@@ -34,9 +34,9 @@ Not stated: `hacl::hmac::compute_sha2_{256,384,512}`. Under the default features
 (no `expose-hacl`) they are `pub(crate)`, so they are proof helpers, not public
 API.
 
-Each `#print axioms` below is followed by its guard list. The guard is
-**pending**: until the proof PR, the output also contains `sorryAx`. After the
-proof PR it must show exactly the listed axioms.
+Each `#print axioms` below is checked by `#guard_msgs` against the exact list of
+axioms that Lean prints. All statements are proved, so no list contains `sorryAx`.
+The comment after each guard explains where its entries come from.
 -/
 
 open Aeneas Aeneas.Std Result WP
@@ -122,7 +122,7 @@ recall hmac_sha2_256_spec_of_gaps
  libcrux_hacl_rs.lowstar.ignore.ignore,
  core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in #print axioms hmac_sha2_256_spec_of_gaps
-/- Axiom guard (pending; conditional form):
+/- Axiom guard (conditional form):
    * Lean: `propext`, `Classical.choice`, `Quot.sound`.
    * Extraction axioms reached through `hmac_sha2_256` (boundary A2, types only):
      `libcrux_sha2.hacl.{h256, hash_256, sha256_init, sha256_update_nblocks,
@@ -157,7 +157,7 @@ recall hmac_sha2_256_panic (dst : Array U8 32#usize) (key data : Slice U8)
  libcrux_hacl_rs.lowstar.ignore.ignore,
  core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in #print axioms hmac_sha2_256_panic
-/- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`, and the
+/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`, and the
    extraction axioms reached through `hmac_sha2_256` (as for `hmac_sha2_256_spec`).
    No Trusted axiom and no gap hypothesis. -/
 
@@ -250,7 +250,7 @@ recall hmac_sha2_384_spec_of_gaps
  libcrux_hacl_rs.lowstar.ignore.ignore,
  core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in #print axioms hmac_sha2_384_spec_of_gaps
-/- Axiom guard (pending; conditional form):
+/- Axiom guard (conditional form):
    * Lean: `propext`, `Classical.choice`, `Quot.sound`.
    * Extraction axioms reached through `hmac_sha2_384` (boundary A2, types only):
      `libcrux_sha2.hacl.{h384, hash_384, sha384_init, sha384_update_nblocks,
@@ -289,7 +289,7 @@ recall hmac_sha2_384_panic (dst : Array U8 48#usize) (key data : Slice U8)
  libcrux_hacl_rs.lowstar.ignore.ignore,
  core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in #print axioms hmac_sha2_384_panic
-/- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`, and the
+/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`, and the
    extraction axioms reached through `hmac_sha2_384` (as for `hmac_sha2_384_spec`).
    No Trusted axiom and no gap hypothesis. -/
 
@@ -382,7 +382,7 @@ recall hmac_sha2_512_spec_of_gaps
  libcrux_hacl_rs.lowstar.ignore.ignore,
  core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in #print axioms hmac_sha2_512_spec_of_gaps
-/- Axiom guard (pending; conditional form):
+/- Axiom guard (conditional form):
    * Lean: `propext`, `Classical.choice`, `Quot.sound`.
    * Extraction axioms reached through `hmac_sha2_512` (boundary A2, types only):
      `libcrux_sha2.hacl.{h512, hash_512, sha512_init, sha512_update_nblocks,
@@ -421,7 +421,7 @@ recall hmac_sha2_512_panic (dst : Array U8 64#usize) (key data : Slice U8)
  libcrux_hacl_rs.lowstar.ignore.ignore,
  core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in #print axioms hmac_sha2_512_panic
-/- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`, and the
+/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`, and the
    extraction axioms reached through `hmac_sha2_512` (as for `hmac_sha2_512_spec`).
    No Trusted axiom and no gap hypothesis. -/
 

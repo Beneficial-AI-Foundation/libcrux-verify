@@ -50,10 +50,10 @@ two `update`s and `finalize` give the HMAC of the concatenated data; and an
 `update` past the limit is dropped, so `finalize` gives the HMAC of the accepted
 transcript.
 
-Each `#print axioms` below is followed by its guard list. The guard is
-**pending**: until the proof PR, the output also contains `sorryAx`. After the
-proof PR it must show exactly the listed axioms. No statement here uses a
-translation patch or a core/alloc gap.
+Each `#print axioms` below is checked by `#guard_msgs` against the exact list of
+axioms that Lean prints. All statements are proved, so no list contains `sorryAx`.
+The comment after each guard explains where its entries come from. No statement
+here uses a translation patch or a core/alloc gap.
 -/
 
 open Aeneas Aeneas.Std Result WP
@@ -82,7 +82,7 @@ recall new_spec {D S : Type} {OUTLEN : Usize} (BLOCK : Usize)
  libcrux_traits.digest.UpdateError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in
 #print axioms new_spec
-/- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`, and
+/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`, and
    `libcrux_traits.digest.UpdateError.Insts.CoreFmtDebug.fmt` (an extraction
    axiom, A2; only an instance argument of `expect`, never called). -/
 
@@ -104,7 +104,7 @@ recall new_sha256_spec (key : Slice U8) :
  libcrux_traits.digest.UpdateError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in
 #print axioms new_sha256_spec
-/- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`;
+/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`;
    Trusted (A2): `Trusted.sha256Contract`; extraction axioms (A2, types only):
    `libcrux_sha2.impl_hacl.Sha256`, its `InitializeDigestState` `new`, the
    `Sha256Hash` digest-trait `update`, `reset` and `finish`, and
@@ -128,7 +128,7 @@ recall new_sha384_spec (key : Slice U8) :
  libcrux_traits.digest.UpdateError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in
 #print axioms new_sha384_spec
-/- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`;
+/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`;
    Trusted (A2): `Trusted.sha384Contract`; extraction axioms (A2, types only):
    `libcrux_sha2.impl_hacl.Sha384`, its `InitializeDigestState` `new`, the
    `Sha384Hash` digest-trait `update`, `reset` and `finish`, and
@@ -152,7 +152,7 @@ recall new_sha512_spec (key : Slice U8) :
  libcrux_traits.digest.UpdateError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in
 #print axioms new_sha512_spec
-/- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`;
+/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`;
    Trusted (A2): `Trusted.sha512Contract`; extraction axioms (A2, types only):
    `libcrux_sha2.impl_hacl.Sha512`, its `InitializeDigestState` `new`, the
    `Sha512Hash` digest-trait `update`, `reset` and `finish`, and
@@ -174,7 +174,7 @@ recall update_spec {D S : Type} {OUTLEN BLOCK : Usize}
  Quot.sound] -/
 #guard_msgs in
 #print axioms update_spec
-/- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`. -/
+/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`. -/
 
 recall update_err {D S : Type} {OUTLEN BLOCK : Usize}
     (inst : DigestIncremental D S OUTLEN) (init : InitializeDigestState S)
@@ -188,7 +188,7 @@ recall update_err {D S : Type} {OUTLEN BLOCK : Usize}
  Quot.sound] -/
 #guard_msgs in
 #print axioms update_err
-/- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`. -/
+/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`. -/
 
 recall update_full {D S : Type} {OUTLEN BLOCK : Usize}
     (inst : DigestIncremental D S OUTLEN) (init : InitializeDigestState S)
@@ -204,7 +204,7 @@ recall update_full {D S : Type} {OUTLEN BLOCK : Usize}
  Quot.sound] -/
 #guard_msgs in
 #print axioms update_full
-/- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`. -/
+/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`. -/
 
 recall update_sha256_spec (st : HmacSha256) (key msg : List U8) (data : Slice U8)
     (hrep : StreamRep Trusted.sha256Contract st key msg) (hdata : data.length ≤ U32.max)
@@ -223,7 +223,7 @@ recall update_sha256_spec (st : HmacSha256) (key msg : List U8) (data : Slice U8
  libcrux_sha2.impl_hacl.Sha256.Insts.Libcrux_traitsDigestInitializeDigestState.new] -/
 #guard_msgs in
 #print axioms update_sha256_spec
-/- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`;
+/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`;
    Trusted (A2): `Trusted.sha256Contract`; extraction axioms (A2, types only):
    `libcrux_sha2.impl_hacl.Sha256` and its digest-trait operations. -/
 
@@ -242,7 +242,7 @@ recall update_sha256_err (st : HmacSha256) (key msg : List U8) (data : Slice U8)
  libcrux_sha2.impl_hacl.Sha256.Insts.Libcrux_traitsDigestInitializeDigestState.new] -/
 #guard_msgs in
 #print axioms update_sha256_err
-/- Axiom guard (pending): as for `update_sha256_spec`. -/
+/- Axiom guard:as for `update_sha256_spec`. -/
 
 recall update_sha256_full (st : HmacSha256) (key msg : List U8) (data : Slice U8)
     (hrep : StreamRep Trusted.sha256Contract st key msg) (hdata : data.length ≤ U32.max)
@@ -261,7 +261,7 @@ recall update_sha256_full (st : HmacSha256) (key msg : List U8) (data : Slice U8
  libcrux_sha2.impl_hacl.Sha256.Insts.Libcrux_traitsDigestInitializeDigestState.new] -/
 #guard_msgs in
 #print axioms update_sha256_full
-/- Axiom guard (pending): as for `update_sha256_spec`. -/
+/- Axiom guard:as for `update_sha256_spec`. -/
 
 recall update_sha384_spec (st : HmacSha384) (key msg : List U8) (data : Slice U8)
     (hrep : StreamRep Trusted.sha384Contract st key msg) (hdata : data.length ≤ U32.max)
@@ -280,7 +280,7 @@ recall update_sha384_spec (st : HmacSha384) (key msg : List U8) (data : Slice U8
  libcrux_sha2.impl_hacl.Sha384.Insts.Libcrux_traitsDigestInitializeDigestState.new] -/
 #guard_msgs in
 #print axioms update_sha384_spec
-/- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`;
+/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`;
    Trusted (A2): `Trusted.sha384Contract`; extraction axioms (A2, types only):
    `libcrux_sha2.impl_hacl.Sha384` and its digest-trait operations. -/
 
@@ -299,7 +299,7 @@ recall update_sha384_err (st : HmacSha384) (key msg : List U8) (data : Slice U8)
  libcrux_sha2.impl_hacl.Sha384.Insts.Libcrux_traitsDigestInitializeDigestState.new] -/
 #guard_msgs in
 #print axioms update_sha384_err
-/- Axiom guard (pending): as for `update_sha384_spec`. -/
+/- Axiom guard:as for `update_sha384_spec`. -/
 
 recall update_sha384_full (st : HmacSha384) (key msg : List U8) (data : Slice U8)
     (hrep : StreamRep Trusted.sha384Contract st key msg) (hdata : data.length ≤ U32.max)
@@ -318,7 +318,7 @@ recall update_sha384_full (st : HmacSha384) (key msg : List U8) (data : Slice U8
  libcrux_sha2.impl_hacl.Sha384.Insts.Libcrux_traitsDigestInitializeDigestState.new] -/
 #guard_msgs in
 #print axioms update_sha384_full
-/- Axiom guard (pending): as for `update_sha384_spec`. -/
+/- Axiom guard:as for `update_sha384_spec`. -/
 
 recall update_sha512_spec (st : HmacSha512) (key msg : List U8) (data : Slice U8)
     (hrep : StreamRep Trusted.sha512Contract st key msg) (hdata : data.length ≤ U32.max)
@@ -337,7 +337,7 @@ recall update_sha512_spec (st : HmacSha512) (key msg : List U8) (data : Slice U8
  libcrux_sha2.impl_hacl.Sha512.Insts.Libcrux_traitsDigestInitializeDigestState.new] -/
 #guard_msgs in
 #print axioms update_sha512_spec
-/- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`;
+/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`;
    Trusted (A2): `Trusted.sha512Contract`; extraction axioms (A2, types only):
    `libcrux_sha2.impl_hacl.Sha512` and its digest-trait operations. -/
 
@@ -356,7 +356,7 @@ recall update_sha512_err (st : HmacSha512) (key msg : List U8) (data : Slice U8)
  libcrux_sha2.impl_hacl.Sha512.Insts.Libcrux_traitsDigestInitializeDigestState.new] -/
 #guard_msgs in
 #print axioms update_sha512_err
-/- Axiom guard (pending): as for `update_sha512_spec`. -/
+/- Axiom guard:as for `update_sha512_spec`. -/
 
 recall update_sha512_full (st : HmacSha512) (key msg : List U8) (data : Slice U8)
     (hrep : StreamRep Trusted.sha512Contract st key msg) (hdata : data.length ≤ U32.max)
@@ -375,7 +375,7 @@ recall update_sha512_full (st : HmacSha512) (key msg : List U8) (data : Slice U8
  libcrux_sha2.impl_hacl.Sha512.Insts.Libcrux_traitsDigestInitializeDigestState.new] -/
 #guard_msgs in
 #print axioms update_sha512_full
-/- Axiom guard (pending): as for `update_sha512_spec`. -/
+/- Axiom guard:as for `update_sha512_spec`. -/
 
 /-! ## `<HmacStream as HmacState>::finalize` (C3) -/
 
@@ -393,7 +393,7 @@ recall finalize_spec {D S : Type} {OUTLEN BLOCK : Usize}
  libcrux_traits.digest.UpdateError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in
 #print axioms finalize_spec
-/- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`, and
+/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`, and
    `libcrux_traits.digest.UpdateError.Insts.CoreFmtDebug.fmt` (never called). -/
 
 recall finalize_sha256_spec (st : HmacSha256) (key msg : List U8) (dst : Array U8 32#usize)
@@ -412,7 +412,7 @@ recall finalize_sha256_spec (st : HmacSha256) (key msg : List U8) (dst : Array U
  libcrux_traits.digest.UpdateError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in
 #print axioms finalize_sha256_spec
-/- Axiom guard (pending): as for `new_sha256_spec`. -/
+/- Axiom guard:as for `new_sha256_spec`. -/
 
 recall finalize_sha384_spec (st : HmacSha384) (key msg : List U8) (dst : Array U8 48#usize)
     (hrep : StreamRep Trusted.sha384Contract st key msg) :
@@ -430,7 +430,7 @@ recall finalize_sha384_spec (st : HmacSha384) (key msg : List U8) (dst : Array U
  libcrux_traits.digest.UpdateError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in
 #print axioms finalize_sha384_spec
-/- Axiom guard (pending): as for `new_sha384_spec`. -/
+/- Axiom guard:as for `new_sha384_spec`. -/
 
 recall finalize_sha512_spec (st : HmacSha512) (key msg : List U8) (dst : Array U8 64#usize)
     (hrep : StreamRep Trusted.sha512Contract st key msg) :
@@ -448,7 +448,7 @@ recall finalize_sha512_spec (st : HmacSha512) (key msg : List U8) (dst : Array U
  libcrux_traits.digest.UpdateError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in
 #print axioms finalize_sha512_spec
-/- Axiom guard (pending): as for `new_sha512_spec`. -/
+/- Axiom guard:as for `new_sha512_spec`. -/
 
 /-! ## The statements compose into C3 -/
 

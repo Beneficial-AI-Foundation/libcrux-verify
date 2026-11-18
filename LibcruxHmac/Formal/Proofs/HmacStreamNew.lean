@@ -72,7 +72,7 @@ theorem new_spec {D S : Type} {OUTLEN : Usize} (BLOCK : Usize)
         have hlen : key.val.length ≤ BLOCK.val := by scalar_tac
         subst s1_post
         rw [s_post2, Array.repeat_val, setSlice_replicate_zero _ _ hlen]
-        simp [Spec.keyBlock, hlen, byte_zero]
+        simp [Spec.keyBlock, hlen, Spec.byte_zero]
       · refine spec_bind C.new ?_
         intro tmp htmp
         have hkl : key.length ≤ U32.max := by scalar_tac
@@ -95,7 +95,7 @@ theorem new_spec {D S : Type} {OUTLEN : Usize} (BLOCK : Usize)
           subst s2_post s1_post
           have hv : hashed1.to_slice.val = H key.val := by simp [Array.to_slice, hh]
           rw [s_post2, Array.repeat_val, hv, setSlice_replicate_zero _ _ (by omega)]
-          simp [Spec.keyBlock, hgt, hlenH, byte_zero]
+          simp [Spec.keyBlock, hgt, hlenH, Spec.byte_zero]
     · intro kb hkb
       step with new_loop_spec kb (Array.repeat BLOCK 0#u8) (Array.repeat BLOCK 0#u8)
         as ⟨ipad, opad, hip, hop⟩

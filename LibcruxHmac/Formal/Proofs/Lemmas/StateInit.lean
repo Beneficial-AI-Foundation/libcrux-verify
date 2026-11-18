@@ -3,9 +3,10 @@ import LibcruxHmac.Extraction.LibcruxHmac
 /-!
 # The unrolled state initialisation of `hacl::hmac::compute_sha2_*`
 
-`compute_sha2_*` copies the eight words of the initial hash value `h256 ()` (or `h512 ()`)
-into a zeroed state, one word at a time: it turns the array into a slice, splits the slice
-at index 0, sets a word of the right half, and turns the pieces back into an array.
+`compute_sha2_*` copies the eight words of its initial hash value into a zeroed state, one
+word at a time: `h256 ()` for SHA-256, `h384 ()` for SHA-384 and `h512 ()` for SHA-512. It
+turns the array into a slice, splits the slice at index 0, sets a word of the right half,
+and turns the pieces back into an array.
 `level_step` is one such round, for any element type, and `set_chain` is the result of the
 eight rounds.
 -/

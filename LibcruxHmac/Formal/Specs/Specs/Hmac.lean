@@ -35,9 +35,9 @@ Not stated:
   `hmac_spec` and `hmac_spec_of_gaps` cover its three instances (hmac.rs
   lines 83–85).
 
-Each `#print axioms` below is followed by its guard list. The guard is
-**pending**: until the proof PR, the output also contains `sorryAx`. After the
-proof PR it must show exactly the listed axioms.
+Each `#print axioms` below is checked by `#guard_msgs` against the exact list of
+axioms that Lean prints. All statements are proved, so no list contains `sorryAx`.
+The comment after each guard explains where its entries come from.
 -/
 
 open Aeneas Aeneas.Std Result WP
@@ -51,7 +51,7 @@ recall tag_size_spec (alg : Algorithm) :
 
 /-- info: 'libcrux_hmac.tag_size_spec' depends on axioms: [propext, Classical.choice, Quot.sound] -/
 #guard_msgs in #print axioms tag_size_spec
-/- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`.
+/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`.
    No Trusted axiom, no extraction axiom. -/
 
 /-! ## `libcrux_hmac::hmac` (C4) -/
@@ -197,7 +197,7 @@ recall hmac_spec_of_gaps
  libcrux_hacl_rs.lowstar.ignore.ignore,
  core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in #print axioms hmac_spec_of_gaps
-/- Axiom guard (pending; conditional form):
+/- Axiom guard (conditional form):
    * Lean: `propext`, `Classical.choice`, `Quot.sound`.
    * Extraction axioms reached through `hmac` (boundary A2, types only):
      `libcrux_sha2.hacl.{h256, h384, h512, hash_256, hash_384, hash_512,
@@ -251,7 +251,7 @@ recall hmac_panic (alg : Algorithm) (key data : Slice U8) (tag_length : Option U
  libcrux_hacl_rs.lowstar.ignore.ignore,
  core.num.error.TryFromIntError.Insts.CoreFmtDebug.fmt] -/
 #guard_msgs in #print axioms hmac_panic
-/- Axiom guard (pending): `propext`, `Classical.choice`, `Quot.sound`, and the
+/- Axiom guard:`propext`, `Classical.choice`, `Quot.sound`, and the
    extraction axioms reached through `hmac` (as for `hmac_spec`). No Trusted
    axiom and no gap hypothesis: the `unwrap` fails before any of them is called. -/
 
