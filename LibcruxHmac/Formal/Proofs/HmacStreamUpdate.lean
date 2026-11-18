@@ -1,4 +1,5 @@
 import LibcruxHmac.Formal.Trusted.Sha2Stream
+import LibcruxHmac.Formal.Proofs.Lemmas.StreamRep
 
 /-!
 # `<libcrux_hmac::incremental::HmacStream as HmacState>::update`
@@ -55,7 +56,17 @@ theorem update_spec {D S : Type} {OUTLEN BLOCK : Usize}
     (hlen : BLOCK.val + msg.length + data.length ≤ maxLen) :
     update inst init st data ⦃ r st' =>
       r = .Ok () ∧ StreamRep C st' key (msg ++ data.val) ⦄ := by
-  sorry
+  have hil := hrep.inner_length
+  obtain ⟨hop, hin⟩ := hrep
+  unfold update
+  refine spec_bind (C.update_ok st.inner _ data hin hdata ?_) ?_
+  · rw [hil]; exact hlen
+  · rintro ⟨r, t⟩ ⟨hr, ht⟩
+    subst hr
+    simp
+    unfold Spec.StreamRep
+    refine ⟨hop, ?_⟩
+    simpa [List.append_assoc] using ht
 
 /-- C3, `update`, for any digest that meets its contract: from a state within the
 total limit, an input of at most `u32::MAX` bytes that would pass the limit is
@@ -68,7 +79,12 @@ theorem update_full {D S : Type} {OUTLEN BLOCK : Usize}
     (hbound : BLOCK.val + msg.length ≤ maxLen)
     (hover : maxLen < BLOCK.val + msg.length + data.length) :
     update inst init st data = ok (.Ok (), st) := by
-  sorry
+  have hil := hrep.inner_length
+  obtain ⟨hop, hin⟩ := hrep
+  unfold update
+  rw [C.update_full st.inner _ data hin (by rw [hil]; exact hbound) hdata
+    (by rw [hil]; exact hover)]
+  simp
 
 /-- C3, `update`, for any digest that meets its contract: with more than
 `u32::MAX` bytes, `update` returns `Err(InvalidInputLength)` and leaves the
@@ -79,7 +95,11 @@ theorem update_err {D S : Type} {OUTLEN BLOCK : Usize}
     (st : incremental.HmacStream D S OUTLEN BLOCK) (key msg : List U8) (data : Slice U8)
     (hrep : StreamRep C st key msg) (hdata : U32.max < data.length) :
     update inst init st data = ok (.Err .InvalidInputLength, st) := by
-  sorry
+  obtain ⟨hop, hin⟩ := hrep
+  unfold update
+  rw [C.update_err st.inner _ data hin hdata]
+  simp [incremental.HmacStateHmacStreamOUTLEN.update.closure.Insts.CoreOpsFunctionFnOnceTupleUpdateErrorError,
+    incremental.HmacStateHmacStreamOUTLEN.update.closure.Insts.CoreOpsFunctionFnOnceTupleUpdateErrorError.call_once]
 
 /-- C3, `update` at `HmacSha256`. -/
 @[step]
