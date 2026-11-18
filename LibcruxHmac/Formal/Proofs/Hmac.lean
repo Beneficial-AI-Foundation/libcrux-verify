@@ -2,6 +2,7 @@ import LibcruxHmac.Formal.Proofs.HmacSha2_256
 import LibcruxHmac.Formal.Proofs.HmacSha2_384
 import LibcruxHmac.Formal.Proofs.HmacSha2_512
 import LibcruxHmac.Formal.Proofs.TagSize
+import LibcruxHmac.Formal.Trusted.CoreAllocGaps
 
 /-!
 # `libcrux_hmac::hmac` (crates/algorithms/hmac/src/hmac.rs lines 72–89)
@@ -31,10 +32,12 @@ natural language specs:
       wrong in that case.)
       This is stated twice:
       - `hmac_spec`, the exact C4 claim, conditional on C1 (`hmac_sha2_*_spec`),
-        hence on A1 and A2, only;
-      - `hmac_spec_of_gaps`, the same conclusion with the behaviour of four open
-        core/alloc gaps taken as the hypotheses `hdiv`, `hrem`, `hbox` (inherited
-        from C1) and `htrunc` (`Vec::truncate`).
+        hence on A1, A2 and the three accepted core/alloc gap assumptions of C1, and
+        on the accepted assumption on `Vec::truncate`
+        (`Trusted/CoreAllocGaps.lean`);
+      - `hmac_spec_of_gaps`, the same conclusion with the behaviour of these four
+        gaps taken as the hypotheses `hdiv`, `hrem`, `hbox` (inherited from C1) and
+        `htrunc` (`Vec::truncate`).
     * Otherwise it panics: the `unwrap` in `hmac_sha2_*` fails before any hashing.
     The extracted body depends on the ratified translation patches `sp-08` (here)
     and `sp-04`/`sp-05`/`sp-06` (through `hmac_sha2_*`).
@@ -44,31 +47,11 @@ open Aeneas Aeneas.Std Result WP
 
 namespace libcrux_hmac
 
-/-- C4, exact claim: below `2 ^ 32` bytes of key and data, `hmac` returns the HMAC
-tag of `alg`, cut to `tag_length` bytes when that is shorter. Conditional on C1,
-hence on A1 and A2, only.
-
-This cannot be proved from the current extraction. `hmac` calls
-`alloc.vec.Vec.truncate`, and through `hmac_sha2_*` also `core.num.U32.wrapping_div`,
-`core.num.U32.wrapping_rem` and `alloc.vec.Vec.into_boxed_slice`. These are bare
-axioms in the generated file (`externals.json` records `gap-alloc-vec-truncate`,
-`gap-core-u32-wrapping-div`, `gap-core-u32-wrapping-rem` and
-`gap-alloc-vec-into-boxed-slice`, all `open`). A proof needs either models of these
-operations or the owner accepting them as named assumptions. The generated file is
-immutable, so a model needs a re-extraction into a generated template plus a
-hand-written external layer. Until then `hmac_spec_of_gaps` is the provable form. -/
-@[step]
-theorem hmac_spec (alg : Algorithm) (key data : Slice U8) (tag_length : Option Usize)
-    (hkey : key.length ≤ U32.max) (hdata : data.length ≤ U32.max) :
-    hmac alg key data tag_length ⦃ v =>
-      v.val = (Spec.hmacOf alg key.val data.val).take
-        ((tag_length.map (·.val)).getD (Spec.tagLength alg)) ⦄ := by
-  sorry
-
-/-- C4, conditional on the open gaps: the conclusion of `hmac_spec`, with the
+/-- C4, conditional on the gap behaviours: the conclusion of `hmac_spec`, with the
 behaviour of the four gap operations taken as the hypotheses `hdiv`, `hrem`,
 `hbox` and `htrunc` (`Defs/Gaps.lean`). Provable from A1, A2 and these hypotheses,
-through `hmac_sha2_*_spec_of_gaps`. It is not the agreed C4 claim. -/
+through `hmac_sha2_*_spec_of_gaps`. `hmac_spec` below is this theorem with the
+hypotheses discharged by the accepted gap axioms. -/
 theorem hmac_spec_of_gaps
     (hdiv : Spec.Gap.U32WrappingDiv) (hrem : Spec.Gap.U32WrappingRem)
     (hbox : Spec.Gap.VecIntoBoxedSlice) (htrunc : Spec.Gap.VecTruncate)
@@ -134,6 +117,31 @@ theorem hmac_spec_of_gaps
         simpa [Array.to_slice] using hbuf1
       rw [hv', hd]
       simp [Spec.hmacOf, hnat]
+
+/-- C4, exact claim: below `2 ^ 32` bytes of key and data, `hmac` returns the HMAC
+tag of `alg`, cut to `tag_length` bytes when that is shorter. Conditional on C1,
+hence on A1, A2 and the three accepted gap assumptions of `hmac_sha2_*`, and on the
+accepted assumption on `Vec::truncate`.
+
+`hmac` calls `alloc.vec.Vec.truncate`, and through `hmac_sha2_*` also
+`core.num.U32.wrapping_div`, `core.num.U32.wrapping_rem` and
+`alloc.vec.Vec.into_boxed_slice`. These are bare axioms in the generated file. By the
+owner's ruling of 2026-11-18 they are accepted as named assumptions: the axioms
+`Trusted.vec_truncate_spec`, `Trusted.u32_wrapping_div_spec`,
+`Trusted.u32_wrapping_rem_spec` and `Trusted.vec_into_boxed_slice_spec` of
+`Trusted/CoreAllocGaps.lean` (`externals.json` records `gap-alloc-vec-truncate`,
+`gap-core-u32-wrapping-div`, `gap-core-u32-wrapping-rem` and
+`gap-alloc-vec-into-boxed-slice`). The proof is `hmac_spec_of_gaps` applied to these
+four axioms. -/
+@[step]
+theorem hmac_spec (alg : Algorithm) (key data : Slice U8) (tag_length : Option Usize)
+    (hkey : key.length ≤ U32.max) (hdata : data.length ≤ U32.max) :
+    hmac alg key data tag_length ⦃ v =>
+      v.val = (Spec.hmacOf alg key.val data.val).take
+        ((tag_length.map (·.val)).getD (Spec.tagLength alg)) ⦄ :=
+  hmac_spec_of_gaps Trusted.u32_wrapping_div_spec Trusted.u32_wrapping_rem_spec
+    Trusted.vec_into_boxed_slice_spec Trusted.vec_truncate_spec alg key data tag_length
+    hkey hdata
 
 /-- C4, failure: with `2 ^ 32` or more bytes of key or data, `hmac` panics. -/
 theorem hmac_panic (alg : Algorithm) (key data : Slice U8) (tag_length : Option Usize)
